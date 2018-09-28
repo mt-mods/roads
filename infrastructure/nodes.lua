@@ -1349,91 +1349,46 @@
 	end
 
 -- Traffic cone
+
+	local cbox = {
+		type = "fixed",
+		fixed = { -0.25, -0.5, -0.25, 0.25, 0.4065, 0.25 }
+	}
+
 	minetest.register_node("infrastructure:traffic_cone", {
 		description = "Traffic cone",
-		tiles = {
-			"infrastructure_traffic_cone_top.png",
-			"infrastructure_traffic_cone_bottom.png",
-			"infrastructure_traffic_cone_side.png",
-			"infrastructure_traffic_cone_side.png",
-			"infrastructure_traffic_cone_side.png",
-			"infrastructure_traffic_cone_side.png"
-		},
-		drawtype = "nodebox",
+		tiles = { "infrastructure_traffic_cone.png" },
+		drawtype = "mesh",
+		mesh = "infrastructure_traffic_cone.obj",
 		paramtype = "light",
 		groups = {cracky = 2},
 		walkable = false,
 		light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
-		node_box = {
-			type = "fixed",
-			fixed = {
-				{-1/4, -1/2, 0, 1/4, 1/4, 0},
-				{0, -1/2, -1/4, 0, 1/4, 1/4},
-
-				{-3/8, -1/2, -1/8, 3/8, -3/8, 1/8},
-				{-1/8, -1/2, -3/8, 1/8, -3/8, 3/8},
-
-				{-3/8, -1/2 + 0.001, -3/8, 3/8, -1/2 + 0.001, 3/8}
-			}
-		},
-		selection_box = {
-			type = "fixed",
-			fixed = {
-				{-1/4, -1/2, 0, 1/4, 1/4, 0},
-				{0, -1/2, -1/4, 0, 1/4, 1/4},
-
-				{-3/8, -1/2, -1/8, 3/8, -3/8, 1/8},
-				{-1/8, -1/2, -3/8, 1/8, -3/8, 3/8},
-
-				{-3/8, -1/2 + 0.001, -3/8, 3/8, -1/2 + 0.001, 3/8}
-			}
-		},
-
+		collision_box = cbox,
+		selection_box = cbox,
 		after_place_node = function(pos, placer)
 			displacement(pos, placer)
 		end
 	})
 
 	for i = 1, 3 do
+
+		local cbox = {
+			type = "fixed",
+			fixed = { -0.25, -0.5 - i/4, -0.25, 0.25, 0.4065 - i/4, 0.25 }
+		}
+
 		minetest.register_node("infrastructure:traffic_cone_displacement_"..tostring(i), {
-			tiles = {
-				"infrastructure_traffic_cone_top.png",
-				"infrastructure_traffic_cone_bottom.png",
-				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_traffic_cone_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_traffic_cone_side.png",
-				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_traffic_cone_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_traffic_cone_side.png",
-				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_traffic_cone_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_traffic_cone_side.png",
-				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_traffic_cone_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_traffic_cone_side.png"
-			},
-			drawtype = "nodebox",
+		tiles = { "infrastructure_traffic_cone.png" },
+		drawtype = "mesh",
+		mesh = "infrastructure_traffic_cone_i"..i..".obj",
 			paramtype = "light",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
 			walkable = false,
 			light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 			drop = "infrastructure:traffic_cone",
-			node_box = {
-				type = "fixed",
-				fixed = {
-					{-1/4, -1/2 - i/4, 0, 1/4, 1/4 - i/4, 0},
-					{0, -1/2 - i/4, -1/4, 0, 1/4 - i/4, 1/4},
-
-					{-3/8, -1/2 - i/4, -1/8, 3/8, -3/8 - i/4, 1/8},
-					{-1/8, -1/2 - i/4, -3/8, 1/8, -3/8 - i/4, 3/8},
-
-					{-3/8, -1/2 + 0.001 - i/4, -3/8, 3/8, -1/2 + 0.001 - i/4, 3/8}
-				}
-			},
-			selection_box = {
-				type = "fixed",
-				fixed = {
-					{-1/4, -1/2 - i/4, 0, 1/4, 1/4 - i/4, 0},
-					{0, -1/2 - i/4, -1/4, 0, 1/4 - i/4, 1/4},
-
-					{-3/8, -1/2 - i/4, -1/8, 3/8, -3/8 - i/4, 1/8},
-					{-1/8, -1/2 - i/4, -3/8, 1/8, -3/8 - i/4, 3/8},
-
-					{-3/8, -1/2 + 0.001 - i/4, -3/8, 3/8, -1/2 + 0.001 - i/4, 3/8}
-				}
-			}
+			collision_box = cbox,
+			selection_box = cbox,
 		})
 	end
 
