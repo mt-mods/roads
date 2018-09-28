@@ -388,15 +388,26 @@
 		pos.y = pos.y - 1
 		local node = minetest.get_node(pos)
 
-		if ((string.find(node.name, "_three_quarter") ~= nil) or (string.find(node.name, "_displacement_1") ~= nil)) then
-			pos.y = pos.y + 1
-			minetest.set_node(pos, {name = displaced_node.name.."_displacement_1", param2 = fdir})
-		elseif (((string.find(node.name, "slab_") ~= nil) and (string.find(node.name, "_quarter") == nil)) or (string.find(node.name, "_displacement_2") ~= nil)) then
-			pos.y = pos.y + 1
-			minetest.set_node(pos, {name = displaced_node.name.."_displacement_2", param2 = fdir})
-		elseif (((string.find(node.name, "_quarter") ~= nil) and (string.find(node.name, "_three_quarter") == nil)) or (string.find(node.name, "_displacement_3") ~= nil)) then
-			pos.y = pos.y + 1
-			minetest.set_node(pos, {name = displaced_node.name.."_displacement_3", param2 = fdir})
+		if string.find(node.name, "slab_") then
+			if (string.find(node.name, "_1")
+			    and not (string.find(node.name, "_14")
+			    or string.find(node.name, "_15")))
+			  or string.find(node.name, "_2")
+			  or (string.find(node.name, "_quarter") and not string.find(node.name, "_three_quarter"))
+			  or string.find(node.name, "_two_sides")
+			  or string.find(node.name, "_three_sides")
+			  or string.find(node.name, "_displacement_3") then
+				pos.y = pos.y + 1
+				minetest.set_node(pos, {name = displaced_node.name.."_displacement_3", param2 = fdir})
+			elseif string.find(node.name, "_three_quarter") or string.find(node.name, "_displacement_1") then
+				pos.y = pos.y + 1
+				minetest.set_node(pos, {name = displaced_node.name.."_displacement_1", param2 = fdir})
+			elseif not (string.find(node.name, "_14")
+			  or string.find(node.name, "_15")) 
+			  or string.find(node.name, "_displacement_2") then
+				pos.y = pos.y + 1
+				minetest.set_node(pos, {name = displaced_node.name.."_displacement_2", param2 = fdir})
+			end
 		end
 	end
 
