@@ -141,6 +141,7 @@ minetest.register_node("infrastructure:ebell",{
 			{-0.12,-0.35,-0.12,0.12,0.2,0.12,},
 		},
 	},
+	_digistuff_channelcopier_fieldname = "channel",
 	groups = {cracky = 3,},
 	on_destruct = infrastructure.stop_bell,
 	after_place_node = ebell_updateformspec,
@@ -481,6 +482,7 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 			{-1/16, 0, -1/16, 1/16, 3, 1/16}
 		}
 	},
+	_digistuff_channelcopier_fieldname = "channel",
 
 	on_construct = function(pos)
 		local node = minetest.get_node(pos)
