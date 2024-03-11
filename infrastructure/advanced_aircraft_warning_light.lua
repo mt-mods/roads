@@ -12,6 +12,7 @@ minetest.register_node("infrastructure:aircraft_warning_light", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	light_source = AIRCRAFT_WARNING_LIGHT_LIGHT_RANGE,
 	node_box = {
 		type = "fixed",

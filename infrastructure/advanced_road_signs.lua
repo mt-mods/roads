@@ -16,6 +16,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2},
+			is_ground_content = false,
 			node_box = {
 				type = "fixed",
 				fixed = {
@@ -67,6 +68,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			drop = "infrastructure:road_sign_"..sign_name,
 			node_box = {
 				type = "fixed",
@@ -102,6 +104,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -167,6 +170,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		drop = "infrastructure:road_sign_crosswalk",
 		node_box = {
 			type = "fixed",
@@ -199,6 +203,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		light_source = RETROREFLECTIVE_SURFACE_LIGHT_RANGE,
 		drop = "",
 		node_box = {
@@ -224,6 +229,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		light_source = RETROREFLECTIVE_SURFACE_LIGHT_RANGE,
 		drop = "",
 		node_box = {

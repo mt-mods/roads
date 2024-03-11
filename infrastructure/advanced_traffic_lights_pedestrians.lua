@@ -64,6 +64,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky=3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = TRAFFIC_LIGHTS_LIGHT_RANGE,
 			node_box = {
 				type = "fixed",
@@ -99,6 +100,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = TRAFFIC_LIGHTS_LIGHT_RANGE,
 			drop = "infrastructure:traffic_lights_pedestrians_bottom_1",
 			node_box = {
@@ -183,6 +185,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3, not_in_creative_inventory = 0},
+		is_ground_content = false,
 		light_source = TRAFFIC_LIGHTS_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",

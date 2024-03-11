@@ -13,6 +13,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 				fixed = {
@@ -53,6 +54,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		light_source = CROSSWALK_LIGHTING_LIGHT_RANGE,
 		drop = "infrastructure:crosswalk_lighting_dark",
 		node_box = {

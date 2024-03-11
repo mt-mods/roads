@@ -356,6 +356,7 @@ minetest.register_node(":streets:digiline_distributor",{
 	description = streets.S("Digiline distributor"),
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -384,6 +385,7 @@ minetest.register_node(":streets:beacon_hybrid_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_hybrid_beacon_inv.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -420,6 +422,7 @@ minetest.register_node(":streets:beacon_hybrid_yellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -455,6 +458,7 @@ minetest.register_node(":streets:beacon_hybrid_red",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -490,6 +494,7 @@ minetest.register_node(":streets:beacon_hybrid_flashyellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -528,6 +533,7 @@ minetest.register_node(":streets:beacon_hybrid_flashred",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -566,6 +572,7 @@ minetest.register_node(":streets:beacon_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_beacon_inv.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -602,6 +609,7 @@ minetest.register_node(":streets:beacon_red",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -637,6 +645,7 @@ minetest.register_node(":streets:beacon_yellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -672,6 +681,7 @@ minetest.register_node(":streets:beacon_flashred",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -710,6 +720,7 @@ minetest.register_node(":streets:beacon_flashyellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -748,6 +759,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_trafficlight_inv_extender_left.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -785,6 +797,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_yellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -821,6 +834,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -860,6 +874,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt"
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -899,6 +914,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -938,6 +954,7 @@ minetest.register_node(":streets:trafficlight_top_extender_left_green",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -973,6 +990,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_trafficlight_inv_extender_right.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -1010,6 +1028,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_yellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1046,6 +1065,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1085,6 +1105,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1124,6 +1145,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1163,6 +1185,7 @@ minetest.register_node(":streets:trafficlight_top_extender_right_green",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1200,6 +1223,7 @@ minetest.register_node(":streets:pedlight_top_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_pedlight_inv.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -1233,6 +1257,7 @@ minetest.register_node(":streets:pedlight_top_off",{
 minetest.register_node(":streets:pedlight_top_dontwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -1258,6 +1283,7 @@ minetest.register_node(":streets:pedlight_top_dontwalk",{
 minetest.register_node(":streets:pedlight_top_walk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -1283,6 +1309,7 @@ minetest.register_node(":streets:pedlight_top_walk",{
 minetest.register_node(":streets:pedlight_top_flashingdontwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -1311,6 +1338,7 @@ minetest.register_node(":streets:pedlight_top_flashingdontwalk",{
 minetest.register_node(":streets:pedlight_top_flashingwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
@@ -1391,6 +1419,7 @@ for _,i in pairs({"","_left","_right"}) do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 1, level = 2},
+		is_ground_content = false,
 		inventory_image = ((i == "") and "streets_trafficlight_inv_straight.png") or ((i == "_left") and "streets_trafficlight_inv_left.png") or ((i == "_right") and "streets_trafficlight_inv_right.png"),
 		light_source = 11,
 		sunlight_propagates = true,
@@ -1424,6 +1453,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_red",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1449,6 +1479,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_yellow",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1474,6 +1505,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_redyellow",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1499,6 +1531,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_green",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1524,6 +1557,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_warn",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1552,6 +1586,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_flashred",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1580,6 +1615,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_warn_alt",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1608,6 +1644,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_flashred_alt",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1636,6 +1673,7 @@ for _,i in pairs({"","_left","_right"}) do
 	minetest.register_node(":streets:trafficlight_top"..i.."_flashgreen",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		paramtype = "light",
 		paramtype2 = "facedir",
 		sunlight_propagates = true,
@@ -1668,6 +1706,7 @@ minetest.register_node(":streets:trafficlight_rrfb_off",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_rrfb_inv.png",
 	light_source = 11,
 	sunlight_propagates = true,
@@ -1704,6 +1743,7 @@ minetest.register_node(":streets:trafficlight_rrfb_on",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	light_source = 11,
 	sunlight_propagates = true,
 	node_box = {
@@ -1742,6 +1782,7 @@ minetest.register_node(":streets:green_arrow",{
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	inventory_image = "streets_trafficlight_inv_greenarrow.png",
 	light_source = 11,
 	sunlight_propagates = true,

@@ -202,6 +202,7 @@ minetest.register_node(":streets:printer", {
 	paramtype2 = "facedir",
 	walkable = true,
 	groups = {snappy=3},
+	is_ground_content = false,
 	sound = default.node_sound_wood_defaults(),
 	drawtype = "nodebox",
 	on_construct = labels.printer.on_construct,
@@ -236,6 +237,7 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = groups,
+		is_ground_content = false,
 		sunlight_propagates = true,
 		walkable = false,
 		inventory_image = tex,
@@ -250,7 +252,7 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 				minetest.set_node(lower_pos,lower_node)
 				minetest.remove_node(pos)
 			end
-		end,				
+		end,
 		node_box = {
 			type = "fixed",
 			fixed = {-0.5,-0.5,-0.5,0.5,-0.499,0.5}
@@ -264,6 +266,7 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 	minetest.register_node(":streets:mark_"..name.."_on_asphalt",{
 		description = streets.S("Asphalt With Marking: "..friendlyname),
 		groups = {cracky=3},
+		is_ground_content = false,
 		tiles = {"streets_asphalt.png^"..tex,"streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^"..tex.."^[transformR180","streets_asphalt.png^"..tex},
 		paramtype2 = "facedir"
 	})

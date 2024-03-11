@@ -14,6 +14,7 @@ minetest.register_node("infrastructure:warning_light", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	light_source = WARNING_LIGHT_LIGHT_RANGE,
 	node_box = {
 		type = "fixed",

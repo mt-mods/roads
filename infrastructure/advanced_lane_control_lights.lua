@@ -27,6 +27,7 @@ for i = 1, 6 do
 		end,
 		_digistuff_channelcopier_fieldname = "channel",
 		groups = {cracky = 3, not_in_creative_inventory = (i == 1 and 0 or 1)},
+		is_ground_content = false,
 		light_source = TRAFFIC_LIGHTS_LIGHT_RANGE,
 		drop = "infrastructure:lane_control_lights_1",
 		node_box = {

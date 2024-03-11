@@ -59,6 +59,7 @@ minetest.register_node(":streets:signworkshop",{
 	description = streets.S("Sign workshop"),
 	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
 	groups = {cracky = 1, level = 2},
+	is_ground_content = false,
 	paramtype2 = "facedir",
 	after_place_node = function(pos)
 		minetest.get_meta(pos):set_string("formspec",table.concat(forms.inactive))
