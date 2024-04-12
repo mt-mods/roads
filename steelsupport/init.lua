@@ -5,6 +5,7 @@ minetest.register_node(":streets:steel_support",{
 	description = streets.S("Steel support"),
 	tiles = {"streets_support.png"},
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drawtype = "glasslike_framed",
 	climbable = true,
 	sunlight_propagates = true,

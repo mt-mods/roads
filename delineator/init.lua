@@ -7,6 +7,7 @@ minetest.register_node(":streets:delineator", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	groups = {cracky=3, oddly_breakable_by_hand=2},
+	is_ground_content = false,
 	light_source = 8,
 	sunlight_propagates = true,
 	node_box = {

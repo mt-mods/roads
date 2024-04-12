@@ -16,6 +16,7 @@
 		drawtype = "normal",
 		paramtype = "light",
 		groups = {cracky = 2},
+		is_ground_content = false,
 	})
 	minetest.register_alias("galvanized_steel", "infrastructure:galvanized_steel")
 
@@ -25,7 +26,7 @@
 		drawtype = "fencelike",
 		tiles = {"infrastructure_galvanized_steel.png"},
 		paramtype = "light",
-		is_ground_content = true,
+		is_ground_content = false,
 		selection_box = {
 			type = "fixed",
 			fixed = {-1/8, -1/2, -1/8, 1/8, 1/2, 1/8},
@@ -44,6 +45,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -72,6 +74,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		walkable = false,
 		climbable = true,
 		node_box = {
@@ -109,6 +112,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -154,6 +158,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2,not_in_creative_inventory = 1},
+		is_ground_content = false,
 		drop = "infrastructure:precast_concrete_grid_paver",
 		node_box = {
 			type = "fixed",
@@ -206,6 +211,7 @@
 		drawtype = "nodebox",
 		paramtype = "light",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -231,6 +237,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {-1/2, -1/2, 0, 1/2, 1/2, 0}
@@ -249,6 +256,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -282,6 +290,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {-1/2, -1/2, -1/2, 0, -3/8, 1/2}
@@ -300,6 +309,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {
@@ -326,6 +336,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		drop = "infrastructure:louver_opened",
 		node_box = {
 			type = "fixed",
@@ -358,6 +369,7 @@
 		drawtype = "nodebox",
 		paramtype = "light",
 		groups = {cracky = 2, oddly_breakable_by_hand = 1},
+		is_ground_content = false,
 		node_box = {
 			type = "fixed",
 			fixed = {-1/2, -1/2, -1/2, 1/2, -1/2 + 0.001, 1/2}
@@ -377,6 +389,7 @@
 		drawtype = "raillike",
 		paramtype = "light",
 		groups = {cracky = 2, oddly_breakable_by_hand = 1},
+		is_ground_content = false,
 	})
 
 -- **************************************************************************************************** ADVANCED ITEMS
@@ -403,7 +416,7 @@
 				pos.y = pos.y + 1
 				minetest.set_node(pos, {name = displaced_node.name.."_displacement_1", param2 = fdir})
 			elseif not (string.find(node.name, "_14")
-			  or string.find(node.name, "_15")) 
+			  or string.find(node.name, "_15"))
 			  or string.find(node.name, "_displacement_2") then
 				pos.y = pos.y + 1
 				minetest.set_node(pos, {name = displaced_node.name.."_displacement_2", param2 = fdir})
@@ -426,6 +439,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
+		is_ground_content = false,
 		walkable = false,
 		light_source = MARKER_LIGHT_RANGE,
 		sunlight_propagates = true,
@@ -467,6 +481,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			walkable = false,
 			light_source = MARKER_LIGHT_RANGE,
 			sunlight_propagates = true,
@@ -507,6 +522,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
+		is_ground_content = false,
 		walkable = false,
 		light_source = MARKER_LIGHT_RANGE,
 		sunlight_propagates = true,
@@ -548,6 +564,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			walkable = false,
 			light_source = MARKER_LIGHT_RANGE,
 			sunlight_propagates = true,
@@ -588,6 +605,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
+		is_ground_content = false,
 		light_source = DELINEATOR_LIGHT_RANGE,
 		sunlight_propagates = true,
 		node_box = {
@@ -626,6 +644,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 3},
+		is_ground_content = false,
 		light_source = DELINEATOR_LIGHT_RANGE,
 		sunlight_propagates = true,
 		node_box = {
@@ -662,6 +681,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = DELINEATOR_LIGHT_RANGE,
 			sunlight_propagates = true,
 			drop = "infrastructure:delineator",
@@ -696,6 +716,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 3, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = DELINEATOR_LIGHT_RANGE,
 			sunlight_propagates = true,
 			drop = "infrastructure:delineator_guardrail",
@@ -731,6 +752,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",
@@ -778,6 +800,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = 1,
 			drop = "infrastructure:wire_rope_safety_barrier",
 			node_box = {
@@ -824,6 +847,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",
@@ -879,6 +903,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = 1,
 			drop = "infrastructure:cable_barrier_terminal",
 			node_box = {
@@ -933,6 +958,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",
@@ -980,6 +1006,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = 1,
 			drop = "infrastructure:corrugated_guide_rail",
 			node_box = {
@@ -1026,6 +1053,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",
@@ -1061,6 +1089,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",
@@ -1096,6 +1125,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 			drop = "infrastructure:energy_absorbing_terminal",
 			node_box = {
@@ -1127,6 +1157,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 			drop = "infrastructure:energy_absorbing_terminal_inversed",
 			node_box = {
@@ -1160,6 +1191,7 @@
 		drawtype = "nodebox",
 		paramtype = "light",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",
@@ -1188,6 +1220,7 @@
 			drawtype = "nodebox",
 			paramtype = "light",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 			drop = "infrastructure:fitch_barrel",
 			node_box = {
@@ -1216,6 +1249,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",
@@ -1261,6 +1295,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = 1,
 			drop = "infrastructure:crowd_control_barricade",
 			node_box = {
@@ -1305,6 +1340,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",
@@ -1340,6 +1376,7 @@
 			paramtype = "light",
 			paramtype2 = "facedir",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			light_source = 1,
 			drop = "infrastructure:anti_dazzling_panel",
 			node_box = {
@@ -1373,6 +1410,7 @@
 		mesh = "infrastructure_traffic_cone.obj",
 		paramtype = "light",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		walkable = false,
 		light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 		collision_box = cbox,
@@ -1390,11 +1428,12 @@
 		}
 
 		minetest.register_node("infrastructure:traffic_cone_displacement_"..tostring(i), {
-		tiles = { "infrastructure_traffic_cone.png" },
-		drawtype = "mesh",
-		mesh = "infrastructure_traffic_cone_i"..i..".obj",
+			tiles = { "infrastructure_traffic_cone.png" },
+			drawtype = "mesh",
+			mesh = "infrastructure_traffic_cone_i"..i..".obj",
 			paramtype = "light",
 			groups = {cracky = 2, not_in_creative_inventory = 1},
+			is_ground_content = false,
 			walkable = false,
 			light_source = ENERGY_ABSORBING_TERMINAL_LIGHT_RANGE,
 			drop = "infrastructure:traffic_cone",
@@ -1418,6 +1457,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 2},
+		is_ground_content = false,
 		light_source = 1,
 		node_box = {
 			type = "fixed",

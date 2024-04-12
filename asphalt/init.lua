@@ -4,7 +4,8 @@
 minetest.register_node(":streets:asphalt",{
 	description = streets.S("Asphalt"),
 	tiles	= {"streets_asphalt.png"},
-	groups	= {cracky=3}
+	groups	= {cracky=3},
+	is_ground_content = false,
 })
 
 if minetest.get_modpath("building_blocks") then

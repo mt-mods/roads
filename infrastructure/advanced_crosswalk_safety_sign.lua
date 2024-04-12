@@ -12,6 +12,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
+		is_ground_content = false,
 		light_source = CROSSWALK_SAFETY_SIGN_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",
@@ -43,6 +44,7 @@
 		paramtype = "light",
 		paramtype2 = "facedir",
 		groups = {cracky = 1},
+		is_ground_content = false,
 		light_source = CROSSWALK_SAFETY_SIGN_LIGHT_RANGE,
 		node_box = {
 			type = "fixed",

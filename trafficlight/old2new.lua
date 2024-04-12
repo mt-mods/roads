@@ -6,7 +6,8 @@ minetest.register_node(":streets:trafficlight_bottom", {
 	pointable = false,
 	drawtype = "airlike",
 	description = "I'm an old node, please drop me",
-	groups = {not_in_creative_inventory = 1}
+	groups = {not_in_creative_inventory = 1},
+	is_ground_content = false,
 })
 minetest.register_abm({
 	nodenames = {"streets:trafficlight_bottom"},

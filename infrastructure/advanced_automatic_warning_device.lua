@@ -143,6 +143,7 @@ minetest.register_node("infrastructure:ebell",{
 	},
 	_digistuff_channelcopier_fieldname = "channel",
 	groups = {cracky = 3,},
+	is_ground_content = false,
 	on_destruct = infrastructure.stop_bell,
 	after_place_node = ebell_updateformspec,
 	on_receive_fields = function(pos,formname,fields,sender)
@@ -206,6 +207,7 @@ minetest.register_node("infrastructure:automatic_warning_device_top", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -235,6 +237,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_on"
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = AUTOMATIC_WARNING_DEVICE_LIGHT_RANGE,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -262,6 +265,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_off
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -290,6 +294,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_on",
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = AUTOMATIC_WARNING_DEVICE_LIGHT_RANGE,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -317,6 +322,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_off"
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -345,6 +351,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_on
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = AUTOMATIC_WARNING_DEVICE_LIGHT_RANGE,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -378,6 +385,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_of
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -412,6 +420,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -442,6 +451,7 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -560,7 +570,7 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 					pos.y = pos.y+2
 					infrastructure.lights_enabled(pos)
 				elseif (msg=="lights_off") then
-					pos.y = pos.y+2	
+					pos.y = pos.y+2
 					infrastructure.lights_disabled(pos)
 				end
 			end

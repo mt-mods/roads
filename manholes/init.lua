@@ -4,13 +4,15 @@
 minetest.register_node(":streets:manhole",{
 	description = streets.S("Simple manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole.png","streets_asphalt.png"},
-	groups	= {cracky=3}
+	groups	= {cracky=3},
+	is_ground_content = false,
 })
 
 minetest.register_node(":streets:manhole_adv_closed",{
 	description = streets.S("Advanced manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole_advanced.png","streets_asphalt.png"},
 	groups = {cracky=3},
+	is_ground_content = false,
 	drawtype = "nodebox",
 	paramtype = "light",
 	sunlight_propagates = true,
@@ -39,6 +41,7 @@ minetest.register_node(":streets:manhole_adv_open",{
 	description = streets.S("Advanced manhole"),
 	tiles = {"streets_asphalt.png^streets_manhole_advanced.png","streets_asphalt.png"},
 	groups = {cracky=3,not_in_creative_inventory=1},
+	is_ground_content = false,
 	drawtype = "nodebox",
 	paramtype = "light",
 	drop = "streets:manhole_adv_closed",

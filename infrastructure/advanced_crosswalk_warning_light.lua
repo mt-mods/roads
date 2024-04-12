@@ -23,6 +23,7 @@ minetest.register_node("infrastructure:crosswalk_warning_light_off", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3, not_in_creative_inventory = 0},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -77,6 +78,7 @@ minetest.register_node("infrastructure:crosswalk_warning_light_on", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 3, not_in_creative_inventory = 1},
+	is_ground_content = false,
 	drop = "infrastructure:crosswalk_warning_light_off",
 	node_box = {
 		type = "fixed",

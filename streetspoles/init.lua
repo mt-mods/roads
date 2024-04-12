@@ -7,6 +7,7 @@ minetest.register_node(":streets:pole_bottom",{
 	description = streets.S("Pole"),
 	tiles = {"streets_pole.png"},
 	groups = {cracky=2},
+	is_ground_content = false,
 	inventory_image = "streets_pole_inv.png",
 	wield_image = "streets_pole_inv.png",
 	paramtype = "light",
@@ -47,6 +48,7 @@ minetest.register_node(":streets:pole_top",{
 	description = streets.S("Y u no play minetest without cheating?"),
 	tiles = {"streets_pole.png"},
 	groups = {not_in_creative_inventory=1,cracky=2},
+	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
@@ -78,6 +80,7 @@ minetest.register_node(":streets:bigpole", {
 	tiles = {"streets_pole.png"},
 	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, bigpole = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -108,6 +111,7 @@ minetest.register_node(":streets:bigpole_edge", {
 	tiles = {"streets_pole.png"},
 	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, bigpole = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -137,6 +141,7 @@ minetest.register_node(":streets:bigpole_tjunction", {
 	tiles = {"streets_pole.png"},
 	sunlight_propagates = true,
 	groups = {cracky = 1, level = 2, bigpole = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {

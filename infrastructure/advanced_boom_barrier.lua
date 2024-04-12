@@ -160,6 +160,7 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -171,7 +172,7 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 			{-3/8, -1/8, -1/8, -1/4, 1/8, 1/2},
 			{-1/2, -3/16, 1/4, -3/8, 3/16, 1/2},
 			{-1/2, -1/8, 3/16, -3/8, 1/8, 1/2},
-			{-1/2, -1/16, 1/8, -3/8, 1/16, 1/2},	
+			{-1/2, -1/16, 1/8, -3/8, 1/16, 1/2},
 
 			{1/4, -1/2, -1/2, 3/8, -1/4, 1/8},
 			{1/4, -1/2, -1/8, 3/8, 1/8, 1/8},
@@ -196,7 +197,7 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 			{-3/8, -1/8, -1/8, -1/4, 1/8, 1/2},
 			{-1/2, -3/16, 1/4, -3/8, 3/16, 1/2},
 			{-1/2, -1/8, 3/16, -3/8, 1/8, 1/2},
-			{-1/2, -1/16, 1/8, -3/8, 1/16, 1/2},	
+			{-1/2, -1/16, 1/8, -3/8, 1/16, 1/2},
 
 			{1/4, -1/2, -1/2, 3/8, -1/4, 1/8},
 			{1/4, -1/2, -1/8, 3/8, 1/8, 1/8},
@@ -242,6 +243,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drop = "infrastructure:boom_barrier_top_h",
 	node_box = {
 		type = "fixed",
@@ -254,7 +256,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 			{-3/8, -1/2, -1/8, -1/4, 1/8, 1/8},
 			{-1/2, -1/2, -3/16, -3/8, -1/4, 3/16},
 			{-1/2, -1/2, -1/8, -3/8, -3/16, 1/8},
-			{-1/2, -1/2, -1/16, -3/8, -1/8, 1/16},	
+			{-1/2, -1/2, -1/16, -3/8, -1/8, 1/16},
 
 			{1/4, -1/8, -1/2, 3/8, 1/2, -1/4},
 			{1/4, -1/8, -1/2, 3/8, 1/8, 1/8},
@@ -279,7 +281,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 			{-3/8, -1/2, -1/8, -1/4, 1/8, 1/8},
 			{-1/2, -1/2, -3/16, -3/8, -1/4, 3/16},
 			{-1/2, -1/2, -1/8, -3/8, -3/16, 1/8},
-			{-1/2, -1/2, -1/16, -3/8, -1/8, 1/16},	
+			{-1/2, -1/2, -1/16, -3/8, -1/8, 1/16},
 
 			{1/4, -1/8, -1/2, 3/8, 1/2, -1/4},
 			{1/4, -1/8, -1/2, 3/8, 1/8, 1/8},
@@ -317,6 +319,7 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drop = "infrastructure:boom_barrier_top_h",
 	node_box = {
 		type = "fixed",
@@ -387,6 +390,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_lightfirst", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	light_source = BOOM_BARRIER_LIGHT_RANGE,
 	node_box = {
 		type = "fixed",
@@ -419,6 +423,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_darkfirst", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drop = "infrastructure:boom_barrier_arm_h_lightfirst",
 	node_box = {
 		type = "fixed",
@@ -451,6 +456,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_end", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drop = "infrastructure:boom_barrier_arm_h_lightfirst",
 	node_box = {
 		type = "fixed",
@@ -486,6 +492,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_v", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = {cracky = 1},
+	is_ground_content = false,
 	drop = "infrastructure:boom_barrier_arm_h_lightfirst",
 	node_box = {
 		type = "fixed",
