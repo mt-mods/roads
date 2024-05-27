@@ -202,6 +202,7 @@ minetest.register_node("infrastructure:automatic_warning_device_top", {
 		"infrastructure_automatic_warning_device_top_side.png",
 		"infrastructure_automatic_warning_device_top.png"
 	},
+	use_texture_alpha = "clip",
 	on_destruct = infrastructure.stop_bell,
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -233,6 +234,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_on"
 		"infrastructure_automatic_warning_device_middle_right_side.png",
 		{name="infrastructure_automatic_warning_device_middle_right_anim.png",animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.5}}
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -262,6 +264,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_off
 		"infrastructure_automatic_warning_device_middle_right_side.png",
 		"infrastructure_automatic_warning_device_middle_right_off.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -290,6 +293,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_on",
 		"infrastructure_automatic_warning_device_middle_left_side.png",
 		{name="infrastructure_automatic_warning_device_middle_left_anim.png",animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.5}}
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -319,6 +323,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_off"
 		"infrastructure_automatic_warning_device_middle_left_side.png",
 		"infrastructure_automatic_warning_device_middle_left_off.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -347,6 +352,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_on
 		"infrastructure_automatic_warning_device_middle_center_side.png",
 		{name="infrastructure_automatic_warning_device_middle_center_anim.png",animation={type="vertical_frames", aspect_w=64, aspect_h=64, length=1.5}}
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -382,6 +388,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_of
 		"infrastructure_automatic_warning_device_middle_center_side.png",
 		"infrastructure_automatic_warning_device_middle_center_off.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -416,6 +423,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle", {
 		"infrastructure_automatic_warning_device_middle_side.png",
 		"infrastructure_automatic_warning_device_middle.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

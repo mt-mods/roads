@@ -386,6 +386,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_lightfirst", {
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -419,6 +420,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_darkfirst", {
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -452,6 +454,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_end", {
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -488,6 +491,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_v", {
 		"infrastructure_boom_barrier_arm_h_top.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

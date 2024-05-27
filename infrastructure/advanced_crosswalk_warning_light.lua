@@ -19,6 +19,7 @@ minetest.register_node("infrastructure:crosswalk_warning_light_off", {
 		"infrastructure_crosswalk_warning_light_back.png",
 		"infrastructure_crosswalk_warning_light_front_dark.png"
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -74,6 +75,7 @@ minetest.register_node("infrastructure:crosswalk_warning_light_on", {
 		"infrastructure_crosswalk_warning_light_back.png",
 		{name="infrastructure_crosswalk_warning_light_front_anim.png",animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=1.5}}
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

@@ -60,6 +60,7 @@
 				"infrastructure_traffic_lights_pedestrians_top_back.png",
 				"infrastructure_traffic_lights_pedestrians_top_front_"..tostring(i)..".png"
 			},
+			use_texture_alpha = "clip",
 			drawtype = "nodebox",
 			paramtype = "light",
 			paramtype2 = "facedir",
@@ -96,6 +97,7 @@
 				"infrastructure_traffic_lights_pedestrians_bottom_back.png",
 				"infrastructure_traffic_lights_pedestrians_bottom_front_"..tostring(i)..".png"
 			},
+			use_texture_alpha = "clip",
 			drawtype = "nodebox",
 			paramtype = "light",
 			paramtype2 = "facedir",
@@ -181,6 +183,7 @@
 			"infrastructure_traffic_lights_pedestrians_bottom_back.png",
 			"infrastructure_traffic_lights_pedestrians_bottom_front_1.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",

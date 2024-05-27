@@ -12,6 +12,7 @@
 				"infrastructure_road_sign_"..sign_name.."_back.png",
 				"infrastructure_road_sign_"..sign_name.."_front.png"
 			},
+			use_texture_alpha = "clip",
 			drawtype = "nodebox",
 			paramtype = "light",
 			paramtype2 = "facedir",

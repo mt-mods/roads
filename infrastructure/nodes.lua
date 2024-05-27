@@ -108,6 +108,7 @@
 			"infrastructure_concrete.png",
 			"infrastructure_concrete.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -154,6 +155,7 @@
 			"infrastructure_grid_paver_grass.png",
 			"infrastructure_grid_paver_grass.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -208,6 +210,7 @@
 	minetest.register_node("infrastructure:truss", {
 		description = "Truss",
 		tiles = {"infrastructure_truss.png"},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		groups = {cracky = 2},
@@ -233,6 +236,7 @@
 	minetest.register_node("infrastructure:wire_netting", {
 		description = "Wire netting",
 		tiles = {"infrastructure_wire_netting.png"},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -252,6 +256,7 @@
 	minetest.register_node("infrastructure:razor_wire", {
 		description = "Razor wire",
 		tiles = {"infrastructure_razor_wire.png"},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -286,6 +291,7 @@
 			"infrastructure_galvanized_steel.png",
 			"infrastructure_galvanized_steel.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -1245,6 +1251,7 @@
 			"infrastructure_crowd_control_barricade_back.png",
 			"infrastructure_crowd_control_barricade_front.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -1336,6 +1343,7 @@
 			"infrastructure_anti_dazzling_panel_side.png",
 			"infrastructure_anti_dazzling_panel_side.png"
 		},
+		use_texture_alpha = "clip",
 		drawtype = "nodebox",
 		paramtype = "light",
 		paramtype2 = "facedir",
@@ -1372,6 +1380,7 @@
 				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_anti_dazzling_panel_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_anti_dazzling_panel_side.png",
 				"[combine:32x32:0,"..tostring(i * 8).."=infrastructure_anti_dazzling_panel_side.png:0,"..tostring(i * 8 - 32).."=infrastructure_anti_dazzling_panel_side.png"
 			},
+			use_texture_alpha = "clip",
 			drawtype = "nodebox",
 			paramtype = "light",
 			paramtype2 = "facedir",

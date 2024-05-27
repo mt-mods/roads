@@ -9,6 +9,7 @@ minetest.register_node("infrastructure:aircraft_warning_light", {
 		{name="infrastructure_aircraft_warning_light_side_anim.png",animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=4}},
 		{name="infrastructure_aircraft_warning_light_side_anim.png",animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=4}}
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	groups = {cracky = 1},

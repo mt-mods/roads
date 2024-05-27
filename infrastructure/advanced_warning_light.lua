@@ -10,6 +10,7 @@ minetest.register_node("infrastructure:warning_light", {
 		"infrastructure_warning_light_back.png",
 		{name="infrastructure_warning_light_front_anim.png",animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=3}},
 	},
+	use_texture_alpha = "clip",
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

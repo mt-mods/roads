@@ -242,6 +242,7 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 		walkable = false,
 		inventory_image = tex,
 		wield_image = tex,
+		use_texture_alpha = "clip",
 		after_place_node = function(pos)
 			local node = minetest.get_node(pos)
 			local lower_pos = {x = pos.x, y = pos.y-1, z = pos.z}
