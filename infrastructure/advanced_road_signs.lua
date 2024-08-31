@@ -34,7 +34,7 @@
 			},
 
 			after_place_node = function(pos, node)
-				local node = minetest.env:get_node(pos)
+				local node = minetest.get_node(pos)
 				local param2 = node.param2
 				local sign_pos = {x=pos.x, y=pos.y, z=pos.z}
 
@@ -48,7 +48,7 @@
 					pos.x = pos.x - 1
 				end
 
-				local node = minetest.env:get_node(pos)
+				local node = minetest.get_node(pos)
 
 				if minetest.registered_nodes[node.name].drawtype == "fencelike" then
 					minetest.set_node(sign_pos, {name="infrastructure:road_sign_"..sign_name.."_on_post", param2=param2})
@@ -122,7 +122,7 @@
 		},
 
 		after_place_node = function(pos, node)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			local param2 = node.param2
 			local sign_pos = {x=pos.x, y=pos.y, z=pos.z}
 
@@ -136,7 +136,7 @@
 				pos.x = pos.x - 1
 			end
 
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 
 			if param2 == 0 then
 				pos.z = pos.z - 2
@@ -150,9 +150,9 @@
 
 			if minetest.registered_nodes[node.name].drawtype == "fencelike" then
 				minetest.set_node(sign_pos, {name="infrastructure:road_sign_crosswalk_on_post", param2=param2})
-				minetest.env:add_node(pos, {name="infrastructure:road_sign_retroreflective_surface_on_post", param2=param2})
+				minetest.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface_on_post", param2=param2})
 			else
-				minetest.env:add_node(pos, {name="infrastructure:road_sign_retroreflective_surface", param2=param2})
+				minetest.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface", param2=param2})
 			end
 		end
 	})

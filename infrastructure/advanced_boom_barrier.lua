@@ -1,6 +1,6 @@
 -- Boom barrier
 function move_arm(pos, node)
-	local node = minetest.env:get_node(pos)
+	local node = minetest.get_node(pos)
 	local param2 = node.param2
 
 	if param2 == 0 then
@@ -25,51 +25,51 @@ function move_arm(pos, node)
 		if dir == "x+" then
 			for i = 1, 10 do
 				pos.x = pos.x + 1
-				if (string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					pos.x = pos.x - 1
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.env:add_node({x=pos.x-i, y=pos.y+i, z=pos.z}, node)
+				minetest.add_node({x=pos.x-i, y=pos.y+i, z=pos.z}, node)
 			end
 		elseif dir == "x-" then
 			for i = 1, 10 do
 				pos.x = pos.x - 1
-				if (string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.env:add_node({x=pos.x+i, y=pos.y+i, z=pos.z}, node)
+				minetest.add_node({x=pos.x+i, y=pos.y+i, z=pos.z}, node)
 			end
 		elseif dir == "z+" then
 			for i = 1, 10 do
 				pos.z = pos.z + 1
-				if (string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z-i}, node)
+				minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z-i}, node)
 			end
 		elseif dir == "z-" then
 			for i = 1, 10 do
 				pos.z = pos.z - 1
-				if (string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.env:add_node({x=pos.x, y=pos.y+i, z=pos.z+i}, node)
+				minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z+i}, node)
 			end
 		end
 
@@ -78,10 +78,10 @@ function move_arm(pos, node)
 			if dir == "x+" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
@@ -90,15 +90,15 @@ function move_arm(pos, node)
 				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.env:add_node({x=pos.x+i, y=pos.y-i, z=pos.z}, node)
+				minetest.add_node({x=pos.x+i, y=pos.y-i, z=pos.z}, node)
 			end
 		elseif dir == "x-" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
@@ -107,15 +107,15 @@ function move_arm(pos, node)
 				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.env:add_node({x=pos.x-i, y=pos.y-i, z=pos.z}, node)
+				minetest.add_node({x=pos.x-i, y=pos.y-i, z=pos.z}, node)
 			end
 		elseif dir == "z+" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
@@ -124,15 +124,15 @@ function move_arm(pos, node)
 				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.env:add_node({x=pos.x, y=pos.y-i, z=pos.z+i}, node)
+				minetest.add_node({x=pos.x, y=pos.y-i, z=pos.z+i}, node)
 			end
 		elseif dir == "z-" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.env:get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
@@ -141,7 +141,7 @@ function move_arm(pos, node)
 				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.env:add_node({x=pos.x, y=pos.y-i, z=pos.z-i}, node)
+				minetest.add_node({x=pos.x, y=pos.y-i, z=pos.z-i}, node)
 			end
 		end
 	end
@@ -213,17 +213,17 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 	},
 
 	after_place_node = function(pos)
-		local node = minetest.env:get_node(pos)
+		local node = minetest.get_node(pos)
 		node.name = "infrastructure:boom_barrier_bottom"
-		minetest.env:add_node(pos, node)
+		minetest.add_node(pos, node)
 		pos.y = pos.y + 1
 		node.name = "infrastructure:boom_barrier_top_h"
-		minetest.env:add_node(pos, node)
+		minetest.add_node(pos, node)
 	end,
 
 	after_dig_node = function(pos)
 		pos.y = pos.y - 1
-		minetest.env:remove_node(pos)
+		minetest.remove_node(pos)
 	end,
 
 	on_punch = function(pos, node)
@@ -298,7 +298,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 
 	after_dig_node = function(pos)
 		pos.y = pos.y - 1
-		minetest.env:remove_node(pos)
+		minetest.remove_node(pos)
 	end,
 
 	on_punch = function(pos, node)
@@ -343,7 +343,7 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 
 	after_dig_node = function(pos)
 		pos.y = pos.y + 1
-		minetest.env:remove_node(pos)
+		minetest.remove_node(pos)
 	end,
 
 	on_construct = function(pos)
@@ -367,7 +367,7 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 					return
 				end
 				pos.y = pos.y + 1
-				local mechnode = minetest.env:get_node(pos)
+				local mechnode = minetest.get_node(pos)
 				if ((msg == "up" and mechnode.name=="infrastructure:boom_barrier_top_h") or (msg == "down" and mechnode.name=="infrastructure:boom_barrier_top_v")) then
 					move_arm(pos, mechnode)
 				end

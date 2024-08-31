@@ -70,17 +70,17 @@
 		},
 
 		after_place_node = function(pos)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			node.name = "infrastructure:crosswalk_safety_sign_bottom"
-			minetest.env:add_node(pos, node)
+			minetest.add_node(pos, node)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:crosswalk_safety_sign_top"
-			minetest.env:add_node(pos, node)
+			minetest.add_node(pos, node)
 		end,
 
 		after_dig_node = function(pos)
 			pos.y = pos.y + 1
-			minetest.env:remove_node(pos)
+			minetest.remove_node(pos)
 		end,
 	})
 
