@@ -145,18 +145,18 @@
 			},
 
 			after_place_node = function(pos)
-				local node = minetest.env:get_node(pos)
+				local node = minetest.get_node(pos)
 				pos.y = pos.y + 1
 				node.name = "infrastructure:traffic_lights_pedestrians_top_"..tostring(i)
-				minetest.env:add_node(pos, node)
+				minetest.add_node(pos, node)
 			end,
 
 			after_dig_node = function(pos)
-				local node = minetest.env:get_node(pos)
+				local node = minetest.get_node(pos)
 				quiet(pos)
 				pos.y = pos.y + 1
 				node.name = "infrastructure:traffic_lights_pedestrians_top_"..tostring(i)
-				minetest.env:remove_node(pos)
+				minetest.remove_node(pos)
 			end,
 
 			on_punch = function(pos, node)
@@ -230,18 +230,18 @@
 		},
 
 		after_place_node = function(pos)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:traffic_lights_pedestrians_top_1"
-			minetest.env:add_node(pos, node)
+			minetest.add_node(pos, node)
 		end,
 
 		after_dig_node = function(pos)
-			local node = minetest.env:get_node(pos)
+			local node = minetest.get_node(pos)
 			quiet(pos)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:traffic_lights_pedestrians_top_1"
-			minetest.env:remove_node(pos)
+			minetest.remove_node(pos)
 		end,
 
 		on_punch = function(pos, node)
