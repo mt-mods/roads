@@ -23,9 +23,9 @@ local soundfriendlynames = {
 }
 
 function infrastructure.play_bell(pos)
-	local pos_hash = minetest.hash_node_position(pos)
+	local pos_hash = core.hash_node_position(pos)
 	if not infrastructure.sound_handles[pos_hash] then
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local soundname = "infrastructure_ebell_"
 		local selectedsound = meta:get_string("selectedsound")
 		if selectedsound and string.len(selectedsound) > 0 then
@@ -33,16 +33,16 @@ function infrastructure.play_bell(pos)
 		else
 			soundname = soundname.."gstype2"
 		end
-		infrastructure.sound_handles[pos_hash] = minetest.sound_play(soundname,
+		infrastructure.sound_handles[pos_hash] = core.sound_play(soundname,
 				{pos = pos, gain = AUTOMATIC_WARNING_DEVICE_VOLUME, loop = true, max_hear_distance = 30,})
 	end
 end
 
 function infrastructure.stop_bell(pos)
-	local pos_hash = minetest.hash_node_position(pos)
+	local pos_hash = core.hash_node_position(pos)
 	local sound_handle = infrastructure.sound_handles[pos_hash]
 	if sound_handle then
-		minetest.sound_stop(sound_handle)
+		core.sound_stop(sound_handle)
 		infrastructure.sound_handles[pos_hash] = nil
 	end
 end
@@ -71,28 +71,28 @@ function infrastructure.right_light_direction(pos, param2)
 end
 
 function infrastructure.lights_enabled(pos)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local param2 = node.param2
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_center_on", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_center_on", param2 = node.param2})
 	infrastructure.left_light_direction(pos, param2)
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_left_on", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_left_on", param2 = node.param2})
 	infrastructure.right_light_direction(pos, param2)
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_right_on", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_right_on", param2 = node.param2})
 end
 
 function infrastructure.lights_disabled(pos)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local param2 = node.param2
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_center_off", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_center_off", param2 = node.param2})
 	infrastructure.left_light_direction(pos, param2)
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_left_off", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_left_off", param2 = node.param2})
 	infrastructure.right_light_direction(pos, param2)
-	minetest.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_right_off", param2 = node.param2})
+	core.swap_node(pos, {name = "infrastructure:automatic_warning_device_middle_right_off", param2 = node.param2})
 end
 
 function infrastructure.activate_lights(pos)
 	pos.y = pos.y + 2
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	if node.name == "infrastructure:automatic_warning_device_middle_center_off" then
 		infrastructure.play_bell(pos)
 		infrastructure.lights_enabled(pos)
@@ -103,13 +103,13 @@ function infrastructure.activate_lights(pos)
 end
 
 local function ebell_updateformspec(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local fs = "size[5,3]"
 	fs = fs.."field[0.3,0.3;5,1;channel;Channel;${channel}]"
 	fs = fs.."label[0,0.7;Model (changes will be applied on next start)]"
 	fs = fs.."dropdown[0,1.1;5;sound;"
 	for _,model in ipairs(soundnames) do
-		fs = fs..minetest.formspec_escape(soundfriendlynames[model])..","
+		fs = fs..core.formspec_escape(soundfriendlynames[model])..","
 	end
 	fs = string.sub(fs,1,-2)
 	local idx = 1
@@ -122,7 +122,7 @@ local function ebell_updateformspec(pos)
 	meta:set_string("formspec",fs)
 end
 
-minetest.register_node("infrastructure:ebell",{
+core.register_node("infrastructure:ebell",{
 	description = "Railroad Crossing Electronic Bell",
 	tiles = {
 		"streets_pole.png",
@@ -149,11 +149,11 @@ minetest.register_node("infrastructure:ebell",{
 	on_receive_fields = function(pos,formname,fields,sender)
 		if not fields.save then return end
 		local name = sender:get_player_name()
-		if minetest.is_protected(pos,name) and not minetest.check_player_privs(name,{protection_bypass=true}) then
-			minetest.record_protection_violation(pos,name)
+		if core.is_protected(pos,name) and not core.check_player_privs(name,{protection_bypass=true}) then
+			core.record_protection_violation(pos,name)
 			return
 		end
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		if fields.channel then
 			meta:set_string("channel",fields.channel)
 		end
@@ -179,7 +179,7 @@ minetest.register_node("infrastructure:ebell",{
 		receptor = {},
 		effector = {
 			action = function(pos,node,channel,msg)
-				local setchan = minetest.get_meta(pos):get_string("channel")
+				local setchan = core.get_meta(pos):get_string("channel")
 				if setchan ~= channel then
 					return
 				end
@@ -193,7 +193,7 @@ minetest.register_node("infrastructure:ebell",{
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_top", {
+core.register_node("infrastructure:automatic_warning_device_top", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -225,7 +225,7 @@ minetest.register_node("infrastructure:automatic_warning_device_top", {
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_right_on", {
+core.register_node("infrastructure:automatic_warning_device_middle_right_on", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -255,7 +255,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_on"
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_right_off", {
+core.register_node("infrastructure:automatic_warning_device_middle_right_off", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -284,7 +284,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_right_off
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_left_on", {
+core.register_node("infrastructure:automatic_warning_device_middle_left_on", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -314,7 +314,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_on",
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_left_off", {
+core.register_node("infrastructure:automatic_warning_device_middle_left_off", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -343,7 +343,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_left_off"
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_center_on", {
+core.register_node("infrastructure:automatic_warning_device_middle_center_on", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -379,7 +379,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_on
 })
 
 
-minetest.register_node("infrastructure:automatic_warning_device_middle_center_off", {
+core.register_node("infrastructure:automatic_warning_device_middle_center_off", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -414,7 +414,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle_center_of
 })
 
 
-minetest.register_node("infrastructure:automatic_warning_device_middle", {
+core.register_node("infrastructure:automatic_warning_device_middle", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -443,7 +443,7 @@ minetest.register_node("infrastructure:automatic_warning_device_middle", {
 	}
 })
 
-minetest.register_node("infrastructure:automatic_warning_device_bottom", {
+core.register_node("infrastructure:automatic_warning_device_bottom", {
 	description = "Automatic warning device",
 	inventory_image = "infrastructure_automatic_warning_device.png",
 	wield_image = "infrastructure_automatic_warning_device.png",
@@ -503,35 +503,35 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 	_digistuff_channelcopier_fieldname = "channel",
 
 	on_construct = function(pos)
-		local node = minetest.get_node(pos)
+		local node = core.get_node(pos)
 		local param2 = node.param2
 
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 
 		pos.y = pos.y + 1
 		node.name = "infrastructure:automatic_warning_device_middle"
-		minetest.set_node(pos, node)
+		core.set_node(pos, node)
 
 		pos.y = pos.y + 2
 		node.name = "infrastructure:automatic_warning_device_top"
-		minetest.set_node(pos, node)
+		core.set_node(pos, node)
 
 		pos.y = pos.y - 1
 		node.name = "infrastructure:automatic_warning_device_middle_center_1"
-		minetest.set_node(pos, node)
+		core.set_node(pos, node)
 
 		infrastructure.left_light_direction(pos, param2)
 		node.name = "infrastructure:automatic_warning_device_middle_left_1"
-		minetest.set_node(pos, node)
+		core.set_node(pos, node)
 
 		infrastructure.right_light_direction(pos, param2)
 		node.name = "infrastructure:automatic_warning_device_middle_right_1"
-		minetest.set_node(pos, node)
+		core.set_node(pos, node)
 	end,
 
 	on_destruct = function(pos)
-		local node = minetest.get_node(pos)
+		local node = core.get_node(pos)
 		local param2 = node.param2
 		pos.y=pos.y+2
 		infrastructure.stop_bell(pos, node)
@@ -539,16 +539,16 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 
 		for i = 1, 3 do
 			pos.y = pos.y + 1
-			minetest.remove_node(pos)
+			core.remove_node(pos)
 		end
 
 		pos.y = pos.y - 1
 
 		infrastructure.left_light_direction(pos, param2)
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 
 		infrastructure.right_light_direction(pos, param2)
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end,
 
 	on_punch = function(pos, node)
@@ -557,8 +557,8 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 
@@ -566,7 +566,7 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 		receptor = {},
 		effector = {
 			action = function(pos, node, channel, msg)
-				local setchan = minetest.get_meta(pos):get_string("channel")
+				local setchan = core.get_meta(pos):get_string("channel")
 				if setchan ~= channel then
 					return
 				end
@@ -589,12 +589,12 @@ minetest.register_node("infrastructure:automatic_warning_device_bottom", {
 
 
 
-minetest.register_alias("infrastructure:automatic_warning_device", "infrastructure:automatic_warning_device_bottom")
-minetest.register_alias("awd", "infrastructure:automatic_warning_device_bottom")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_left_1","infrastructure:automatic_warning_device_middle_left_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_left_2","infrastructure:automatic_warning_device_middle_left_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_right_1","infrastructure:automatic_warning_device_middle_right_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_right_2","infrastructure:automatic_warning_device_middle_right_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_center_1","infrastructure:automatic_warning_device_middle_center_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_center_2","infrastructure:automatic_warning_device_middle_center_off")
-minetest.register_alias("infrastructure:automatic_warning_device_middle_center_3","infrastructure:automatic_warning_device_middle_center_off")
+core.register_alias("infrastructure:automatic_warning_device", "infrastructure:automatic_warning_device_bottom")
+core.register_alias("awd", "infrastructure:automatic_warning_device_bottom")
+core.register_alias("infrastructure:automatic_warning_device_middle_left_1","infrastructure:automatic_warning_device_middle_left_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_left_2","infrastructure:automatic_warning_device_middle_left_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_right_1","infrastructure:automatic_warning_device_middle_right_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_right_2","infrastructure:automatic_warning_device_middle_right_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_center_1","infrastructure:automatic_warning_device_middle_center_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_center_2","infrastructure:automatic_warning_device_middle_center_off")
+core.register_alias("infrastructure:automatic_warning_device_middle_center_3","infrastructure:automatic_warning_device_middle_center_off")

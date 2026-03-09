@@ -1,5 +1,5 @@
 -- Crosswalk lighting
-	minetest.register_node("infrastructure:crosswalk_lighting_dark", {
+	core.register_node("infrastructure:crosswalk_lighting_dark", {
 		description = "Crosswalk lighting",
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
@@ -31,17 +31,17 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:crosswalk_lighting_bright", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:crosswalk_lighting_bright", param2 = node.param2})
 		end,
 
 		mesecons = {effector = {
 			action_on = function (pos, node)
-				minetest.swap_node(pos, {name = "infrastructure:crosswalk_lighting_bright", param2 = node.param2})
+				core.swap_node(pos, {name = "infrastructure:crosswalk_lighting_bright", param2 = node.param2})
 			end,
 		}}
 	})
 
-	minetest.register_node("infrastructure:crosswalk_lighting_bright", {
+	core.register_node("infrastructure:crosswalk_lighting_bright", {
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
 			"infrastructure_crosswalk_lighting_bottom.png",
@@ -74,14 +74,14 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:crosswalk_lighting_dark", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:crosswalk_lighting_dark", param2 = node.param2})
 		end,
 
 		mesecons = {effector = {
 			action_off = function (pos, node)
-				minetest.swap_node(pos, {name = "infrastructure:crosswalk_lighting_dark", param2 = node.param2})
+				core.swap_node(pos, {name = "infrastructure:crosswalk_lighting_dark", param2 = node.param2})
 			end,
 		}}
 	})
 
-	minetest.register_alias("infrastructure:crosswalk_lighting", "infrastructure:crosswalk_lighting_dark")
+	core.register_alias("infrastructure:crosswalk_lighting", "infrastructure:crosswalk_lighting_dark")

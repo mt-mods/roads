@@ -1,6 +1,6 @@
 -- Boom barrier
 function move_arm(pos, node)
-	local node = minetest.get_node(pos)
+	local node = core.get_node(pos)
 	local param2 = node.param2
 
 	if param2 == 0 then
@@ -13,141 +13,141 @@ function move_arm(pos, node)
 		dir = "x+"
 	end
 
-	minetest.sound_play("infrastructure_boom_barrier", {
+	core.sound_play("infrastructure_boom_barrier", {
 		pos = pos,
 		gain = BOOM_BARRIER_VOLUME,
 		max_hear_distance = 50
 	})
 
 	if node.name == "infrastructure:boom_barrier_top_h" then
-		minetest.swap_node(pos, {name = "infrastructure:boom_barrier_top_v", param2 = node.param2})
+		core.swap_node(pos, {name = "infrastructure:boom_barrier_top_v", param2 = node.param2})
 
 		if dir == "x+" then
 			for i = 1, 10 do
 				pos.x = pos.x + 1
-				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					pos.x = pos.x - 1
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.add_node({x=pos.x-i, y=pos.y+i, z=pos.z}, node)
+				core.add_node({x=pos.x-i, y=pos.y+i, z=pos.z}, node)
 			end
 		elseif dir == "x-" then
 			for i = 1, 10 do
 				pos.x = pos.x - 1
-				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.add_node({x=pos.x+i, y=pos.y+i, z=pos.z}, node)
+				core.add_node({x=pos.x+i, y=pos.y+i, z=pos.z}, node)
 			end
 		elseif dir == "z+" then
 			for i = 1, 10 do
 				pos.z = pos.z + 1
-				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z-i}, node)
+				core.add_node({x=pos.x, y=pos.y+i, z=pos.z-i}, node)
 			end
 		elseif dir == "z-" then
 			for i = 1, 10 do
 				pos.z = pos.z - 1
-				if (string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
-				or string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
+				if (string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_lightfirst")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_end")
+				or string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_h_darkfirst")) == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				node.name = "infrastructure:boom_barrier_arm_v"
-				minetest.add_node({x=pos.x, y=pos.y+i, z=pos.z+i}, node)
+				core.add_node({x=pos.x, y=pos.y+i, z=pos.z+i}, node)
 			end
 		end
 
 	elseif node.name == "infrastructure:boom_barrier_top_v" then
-		minetest.swap_node(pos, {name = "infrastructure:boom_barrier_top_h", param2 = node.param2})
+		core.swap_node(pos, {name = "infrastructure:boom_barrier_top_h", param2 = node.param2})
 			if dir == "x+" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
 					node.name = "infrastructure:boom_barrier_arm_h_darkfirst"
 				end
-				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
+				if core.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.add_node({x=pos.x+i, y=pos.y-i, z=pos.z}, node)
+				core.add_node({x=pos.x+i, y=pos.y-i, z=pos.z}, node)
 			end
 		elseif dir == "x-" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
 					node.name = "infrastructure:boom_barrier_arm_h_darkfirst"
 				end
-				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
+				if core.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.add_node({x=pos.x-i, y=pos.y-i, z=pos.z}, node)
+				core.add_node({x=pos.x-i, y=pos.y-i, z=pos.z}, node)
 			end
 		elseif dir == "z+" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
 					node.name = "infrastructure:boom_barrier_arm_h_darkfirst"
 				end
-				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
+				if core.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.add_node({x=pos.x, y=pos.y-i, z=pos.z+i}, node)
+				core.add_node({x=pos.x, y=pos.y-i, z=pos.z+i}, node)
 			end
 		elseif dir == "z-" then
 			for i = 1, 10 do
 				pos.y = pos.y + 1
-				if string.match(minetest.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
+				if string.match(core.get_node(pos).name, "infrastructure:boom_barrier_arm_v") == nil then
 					break
 				end
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 				if i % 2 == 1 then
 					node.name = "infrastructure:boom_barrier_arm_h_lightfirst"
 				else
 					node.name = "infrastructure:boom_barrier_arm_h_darkfirst"
 				end
-				if minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
+				if core.get_node({x=pos.x,y=pos.y+1,z=pos.z}).name ~= "infrastructure:boom_barrier_arm_v" then
 					node.name = "infrastructure:boom_barrier_arm_h_end"
 				end
-				minetest.add_node({x=pos.x, y=pos.y-i, z=pos.z-i}, node)
+				core.add_node({x=pos.x, y=pos.y-i, z=pos.z-i}, node)
 			end
 		end
 	end
 end
 
-minetest.register_node("infrastructure:boom_barrier_top_h", {
+core.register_node("infrastructure:boom_barrier_top_h", {
 	description = "Boom barrier mechanism",
 	tiles = {
 		"infrastructure_boom_barrier_h_top.png",
@@ -213,17 +213,17 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 	},
 
 	after_place_node = function(pos)
-		local node = minetest.get_node(pos)
+		local node = core.get_node(pos)
 		node.name = "infrastructure:boom_barrier_bottom"
-		minetest.add_node(pos, node)
+		core.add_node(pos, node)
 		pos.y = pos.y + 1
 		node.name = "infrastructure:boom_barrier_top_h"
-		minetest.add_node(pos, node)
+		core.add_node(pos, node)
 	end,
 
 	after_dig_node = function(pos)
 		pos.y = pos.y - 1
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end,
 
 	on_punch = function(pos, node)
@@ -231,7 +231,7 @@ minetest.register_node("infrastructure:boom_barrier_top_h", {
 	end
 })
 
-minetest.register_node("infrastructure:boom_barrier_top_v", {
+core.register_node("infrastructure:boom_barrier_top_v", {
 	tiles = {
 		"infrastructure_boom_barrier_h_front_back.png",
 		"infrastructure_boom_barrier_v_bottom.png",
@@ -298,7 +298,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 
 	after_dig_node = function(pos)
 		pos.y = pos.y - 1
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end,
 
 	on_punch = function(pos, node)
@@ -306,7 +306,7 @@ minetest.register_node("infrastructure:boom_barrier_top_v", {
 	end
 })
 
-minetest.register_node("infrastructure:boom_barrier_bottom", {
+core.register_node("infrastructure:boom_barrier_bottom", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -343,18 +343,18 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 
 	after_dig_node = function(pos)
 		pos.y = pos.y + 1
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end,
 
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 
@@ -362,12 +362,12 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 		receptor = {},
 		effector = {
 			action = function(pos, node, channel, msg)
-				local setchan = minetest.get_meta(pos):get_string("channel")
+				local setchan = core.get_meta(pos):get_string("channel")
 				if setchan ~= channel then
 					return
 				end
 				pos.y = pos.y + 1
-				local mechnode = minetest.get_node(pos)
+				local mechnode = core.get_node(pos)
 				if ((msg == "up" and mechnode.name=="infrastructure:boom_barrier_top_h") or (msg == "down" and mechnode.name=="infrastructure:boom_barrier_top_v")) then
 					move_arm(pos, mechnode)
 				end
@@ -376,7 +376,7 @@ minetest.register_node("infrastructure:boom_barrier_bottom", {
 	},
 })
 
-minetest.register_node("infrastructure:boom_barrier_arm_h_lightfirst", {
+core.register_node("infrastructure:boom_barrier_arm_h_lightfirst", {
 	description = "Boom barrier arm",
 	tiles = {
 		"infrastructure_boom_barrier_arm_h_top.png",
@@ -411,7 +411,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_lightfirst", {
 	}
 })
 
-minetest.register_node("infrastructure:boom_barrier_arm_h_darkfirst", {
+core.register_node("infrastructure:boom_barrier_arm_h_darkfirst", {
 	tiles = {
 		"infrastructure_boom_barrier_arm_h_top.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
@@ -445,7 +445,7 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_darkfirst", {
 	}
 })
 
-minetest.register_node("infrastructure:boom_barrier_arm_h_end", {
+core.register_node("infrastructure:boom_barrier_arm_h_end", {
 	tiles = {
 		"infrastructure_boom_barrier_arm_h_top.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
@@ -479,10 +479,10 @@ minetest.register_node("infrastructure:boom_barrier_arm_h_end", {
 	}
 })
 
-minetest.register_alias("infrastructure:boom_barrier_arm_h_dark","infrastructure:boom_barrier_arm_h_darkfirst")
-minetest.register_alias("infrastructure:boom_barrier_arm_h_bright","infrastructure:boom_barrier_arm_h_lightfirst")
+core.register_alias("infrastructure:boom_barrier_arm_h_dark","infrastructure:boom_barrier_arm_h_darkfirst")
+core.register_alias("infrastructure:boom_barrier_arm_h_bright","infrastructure:boom_barrier_arm_h_lightfirst")
 
-minetest.register_node("infrastructure:boom_barrier_arm_v", {
+core.register_node("infrastructure:boom_barrier_arm_v", {
 	tiles = {
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
 		"infrastructure_boom_barrier_arm_h_bottom_front_back.png",
@@ -516,5 +516,5 @@ minetest.register_node("infrastructure:boom_barrier_arm_v", {
 	}
 })
 
-minetest.register_alias("infrastructure:boom_barrier_mechanism", "infrastructure:boom_barrier_top_h")
-minetest.register_alias("infrastructure:boom_barrier_arm", "infrastructure:boom_barrier_arm_h_lightfirst")
+core.register_alias("infrastructure:boom_barrier_mechanism", "infrastructure:boom_barrier_top_h")
+core.register_alias("infrastructure:boom_barrier_arm", "infrastructure:boom_barrier_arm_h_lightfirst")

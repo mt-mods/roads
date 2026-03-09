@@ -1,11 +1,11 @@
 --[[
 	StreetsMod: Asphalt stairs
 ]]
-if not minetest.get_modpath("moreblocks") then return end
+if not core.get_modpath("moreblocks") then return end
 
 	-- Asphalt solid line
 		-- Stair
-		minetest.register_node(":streets:asphalt_solid_line_stair",{
+		core.register_node(":streets:asphalt_solid_line_stair",{
 			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -21,7 +21,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_solid_line_stair 6",
 			recipe = {
 				{"","","streets:asphalt_solid_line"},
@@ -29,7 +29,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				{"streets:asphalt_solid_line","streets:asphalt_solid_line","streets:asphalt_solid_line"}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_solid_line_stair 6",
 			recipe = {
 				{"streets:asphalt_solid_line","",""},
@@ -38,7 +38,7 @@ if not minetest.get_modpath("moreblocks") then return end
 			}
 		})
 		-- Slab
-		minetest.register_node(":streets:asphalt_solid_line_slab",{
+		core.register_node(":streets:asphalt_solid_line_slab",{
 			description = streets.S("Asphalt slab"),
 			tiles = {"streets_asphalt.png^streets_asphalt_solid_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_solid_line.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -53,7 +53,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_solid_line_slab 3",
 			recipe = {
 				{"","",""},
@@ -64,7 +64,7 @@ if not minetest.get_modpath("moreblocks") then return end
 		------------------------------------------------------------
 	-- Asphalt dashed line
 		-- Stair
-		minetest.register_node(":streets:asphalt_dashed_line_stair",{
+		core.register_node(":streets:asphalt_dashed_line_stair",{
 			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -80,7 +80,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_dashed_line_stair 6",
 			recipe = {
 				{"","","streets:asphalt_dashed_line"},
@@ -88,7 +88,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				{"streets:asphalt_dashed_line","streets:asphalt_dashed_line","streets:asphalt_dashed_line"}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_dashed_line_stair 6",
 			recipe = {
 				{"streets:asphalt_dashed_line","",""},
@@ -97,7 +97,7 @@ if not minetest.get_modpath("moreblocks") then return end
 			}
 		})
 		-- Slab
-		minetest.register_node(":streets:asphalt_dashed_line_slab",{
+		core.register_node(":streets:asphalt_dashed_line_slab",{
 			description = streets.S("Asphalt slab"),
 			tiles = {"streets_asphalt.png^streets_asphalt_dashed_line.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_dashed_line.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -112,7 +112,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_dashed_line_slab 3",
 			recipe = {
 				{"","",""},
@@ -121,7 +121,7 @@ if not minetest.get_modpath("moreblocks") then return end
 			}
 		})
 	-- Asphalt outer line
-		minetest.register_node(":streets:asphalt_side_stair_l",{
+		core.register_node(":streets:asphalt_side_stair_l",{
 			description = streets.S("Asphalt stair"),
 			tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -137,7 +137,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_node(":streets:asphalt_side_stair_r",{
+		core.register_node(":streets:asphalt_side_stair_r",{
 			description = streets.S(streets.S("Asphalt stair")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side_r.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -154,7 +154,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_side_stair_l 6",
 			recipe = {
 				{"","","streets:asphalt_side"},
@@ -162,7 +162,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				{"streets:asphalt_side","streets:asphalt_side","streets:asphalt_side"}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_side_stair_l 6",
 			recipe = {
 				{"streets:asphalt_side","",""},
@@ -170,18 +170,18 @@ if not minetest.get_modpath("moreblocks") then return end
 				{"streets:asphalt_side","streets:asphalt_side","streets:asphalt_side"}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "streets:asphalt_side_stair_r",
 			recipe = {"streets:asphalt_side_stair_l"}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "streets:asphalt_side_stair_l",
 			recipe = {"streets:asphalt_side_stair_r"}
 		})
 		---------------------------------------------------------------------
-		minetest.register_node(":streets:asphalt_side_slab_l",{
+		core.register_node(":streets:asphalt_side_slab_l",{
 			description = streets.S(streets.S("Asphalt slab")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -196,7 +196,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_node(":streets:asphalt_side_slab_r",{
+		core.register_node(":streets:asphalt_side_slab_r",{
 			description = streets.S(streets.S("Asphalt slab")),
 			tiles = {"streets_asphalt.png^streets_asphalt_side_r.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^streets_asphalt_side_r.png"},
 			groups = {cracky = 3,not_in_creative_inventory=1},
@@ -211,7 +211,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			output = "streets:asphalt_side_slab_l 3",
 			recipe = {
 				{"","",""},
@@ -219,20 +219,20 @@ if not minetest.get_modpath("moreblocks") then return end
 				{"streets:asphalt_side","streets:asphalt_side","streets:asphalt_side"}
 			}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "streets:asphalt_side_r",
 			recipe = {"streets:asphalt_side_l"}
 		})
-		minetest.register_craft({
+		core.register_craft({
 			type = "shapeless",
 			output = "streets:asphalt_side_l",
 			recipe = {"streets:asphalt_side_r"}
 		})
 
 	-- Asphalt
-	minetest.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
-	minetest.register_alias("streets:asphalt_slab","stairs:slab_asphalt")
+	core.register_alias("streets:asphalt_stair","stairs:stair_asphalt")
+	core.register_alias("streets:asphalt_slab","stairs:slab_asphalt")
 
 	stairsplus:register_all(
 		"streets",
@@ -313,7 +313,8 @@ if not minetest.get_modpath("moreblocks") then return end
 				"streets_asphalt.png",
 				"streets_asphalt.png^streets_asphalt_side_r.png"
 			},
-			description = "Asphalt with solid outer line (right)"
+			description = "Asphalt with solid outer line (right)",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 
@@ -328,6 +329,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				"streets_asphalt.png"
 			},
 			description = "Asphalt with solid outer line (corner/edge)",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 
@@ -341,6 +343,7 @@ if not minetest.get_modpath("moreblocks") then return end
 				"streets_asphalt.png^(streets_asphalt_outer_edge.png^[transformR270)",
 				"streets_asphalt.png"
 			},
-			description = "Asphalt with solid outer line (corner/edge, rotated)"
+			description = "Asphalt with solid outer line (corner/edge, rotated)",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)

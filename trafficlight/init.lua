@@ -93,23 +93,23 @@ streets.tlDigilineRules = {
 			}
 
 local function ped_on_flash_start(pos)
-	local timer = minetest.get_node_timer(pos)
+	local timer = core.get_node_timer(pos)
 	timer:set(99,0)
 end
 
 local function ped_on_flash_end(pos,record)
-	local objs = minetest.get_objects_inside_radius(pos,1.5)
+	local objs = core.get_objects_inside_radius(pos,1.5)
 	for _,obj in pairs(objs) do
 		if obj:get_luaentity() and obj:get_luaentity().name == "streets:pedcountdown" then
 			obj:remove()
 		end
 	end
-	local timer = minetest.get_node_timer(pos)
+	local timer = core.get_node_timer(pos)
 	if not record then
 		timer:stop()
 		return
 	end
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local lastflashtime = meta:get_int("lastflashtime")
 	local twoflashesago = meta:get_int("twoflashesago")
 	local flashtime = math.min(timer:get_elapsed(),99)
@@ -125,17 +125,17 @@ streets.tlSwitch = function(pos,to)
 	if not pos or not to then
 		return
 	end
-	minetest.swap_node(pos, {name = to, param2 = minetest.get_node(pos).param2})
+	core.swap_node(pos, {name = to, param2 = core.get_node(pos).param2})
 end
 
 streets.on_digiline_receive = function(pos, node, channel, msg)
-	local setchan = minetest.get_meta(pos):get_string("channel")
+	local setchan = core.get_meta(pos):get_string("channel")
 	if setchan ~= channel then
 		return
 	end
 	-- Tl states
-	local name = minetest.get_node(pos).name
-	local althalfhz = minetest.get_node(pos).param2 % 2 == 1
+	local name = core.get_node(pos).name
+	local althalfhz = core.get_node(pos).param2 % 2 == 1
 	if msg == "OFF" then
 		if name:find("pedlight") then
 			if name == "streets:pedlight_top_flashingdontwalk" then
@@ -352,7 +352,7 @@ streets.on_digiline_receive = function(pos, node, channel, msg)
 	end
 end
 
-minetest.register_node(":streets:digiline_distributor",{
+core.register_node(":streets:digiline_distributor",{
 	description = streets.S("Digiline distributor"),
 	tiles = {"streets_lampcontroller_top.png","streets_lampcontroller_bottom.png","streets_lampcontroller_sides.png"},
 	groups = {cracky = 1},
@@ -379,7 +379,7 @@ minetest.register_node(":streets:digiline_distributor",{
 	}
 })
 
-minetest.register_node(":streets:beacon_hybrid_off",{
+core.register_node(":streets:beacon_hybrid_off",{
 	description = "Hybrid Beacon",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -405,18 +405,18 @@ minetest.register_node(":streets:beacon_hybrid_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_hybrid_yellow",{
+core.register_node(":streets:beacon_hybrid_yellow",{
 	drop = "streets:beacon_hybrid_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -441,18 +441,18 @@ minetest.register_node(":streets:beacon_hybrid_yellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_hybrid_red",{
+core.register_node(":streets:beacon_hybrid_red",{
 	drop = "streets:beacon_hybrid_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -477,18 +477,18 @@ minetest.register_node(":streets:beacon_hybrid_red",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_hybrid_flashyellow",{
+core.register_node(":streets:beacon_hybrid_flashyellow",{
 	drop = "streets:beacon_hybrid_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -516,18 +516,18 @@ minetest.register_node(":streets:beacon_hybrid_flashyellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_hybrid_flashred",{
+core.register_node(":streets:beacon_hybrid_flashred",{
 	drop = "streets:beacon_hybrid_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -555,18 +555,18 @@ minetest.register_node(":streets:beacon_hybrid_flashred",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_off",{
+core.register_node(":streets:beacon_off",{
 	description = "Beacon",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -592,18 +592,18 @@ minetest.register_node(":streets:beacon_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_red",{
+core.register_node(":streets:beacon_red",{
 	drop = "streets:beacon_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -628,18 +628,18 @@ minetest.register_node(":streets:beacon_red",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_yellow",{
+core.register_node(":streets:beacon_yellow",{
 	drop = "streets:beacon_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -664,18 +664,18 @@ minetest.register_node(":streets:beacon_yellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_flashred",{
+core.register_node(":streets:beacon_flashred",{
 	drop = "streets:beacon_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -703,18 +703,18 @@ minetest.register_node(":streets:beacon_flashred",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:beacon_flashyellow",{
+core.register_node(":streets:beacon_flashyellow",{
 	drop = "streets:beacon_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -742,18 +742,18 @@ minetest.register_node(":streets:beacon_flashyellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_off",{
+core.register_node(":streets:trafficlight_top_extender_left_off",{
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
 	paramtype = "light",
@@ -779,18 +779,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_yellow",{
+core.register_node(":streets:trafficlight_top_extender_left_yellow",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
@@ -816,18 +816,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_yellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
+core.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
@@ -856,18 +856,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt",{
+core.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
@@ -896,18 +896,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt"
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
+core.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
@@ -936,18 +936,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_left_green",{
+core.register_node(":streets:trafficlight_top_extender_left_green",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Left-Turn Module"),
 	drawtype="nodebox",
@@ -973,18 +973,18 @@ minetest.register_node(":streets:trafficlight_top_extender_left_green",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_off",{
+core.register_node(":streets:trafficlight_top_extender_right_off",{
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
 	paramtype = "light",
@@ -1010,18 +1010,18 @@ minetest.register_node(":streets:trafficlight_top_extender_right_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_yellow",{
+core.register_node(":streets:trafficlight_top_extender_right_yellow",{
 	drop = "streets:trafficlight_top_extender_right_off",
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
@@ -1047,18 +1047,18 @@ minetest.register_node(":streets:trafficlight_top_extender_right_yellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
+core.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
 	drop = "streets:trafficlight_top_extender_right_off",
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
@@ -1087,18 +1087,18 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt",{
+core.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt",{
 	drop = "streets:trafficlight_top_extender_right_off",
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
@@ -1127,18 +1127,18 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
+core.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
 	drop = "streets:trafficlight_top_extender_right_off",
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
@@ -1167,18 +1167,18 @@ minetest.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_top_extender_right_green",{
+core.register_node(":streets:trafficlight_top_extender_right_green",{
 	drop = "streets:trafficlight_top_extender_left_off",
 	description = streets.S("Traffic Light Right-Turn Module"),
 	drawtype="nodebox",
@@ -1204,20 +1204,20 @@ minetest.register_node(":streets:trafficlight_top_extender_right_green",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
 
 
-minetest.register_node(":streets:pedlight_top_off",{
+core.register_node(":streets:pedlight_top_off",{
 	description = streets.S("Pedestrian Light"),
 	drawtype="nodebox",
 	paramtype = "light",
@@ -1243,18 +1243,18 @@ minetest.register_node(":streets:pedlight_top_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:pedlight_top_dontwalk",{
+core.register_node(":streets:pedlight_top_dontwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	is_ground_content = false,
@@ -1280,7 +1280,7 @@ minetest.register_node(":streets:pedlight_top_dontwalk",{
 	},
 })
 
-minetest.register_node(":streets:pedlight_top_walk",{
+core.register_node(":streets:pedlight_top_walk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	is_ground_content = false,
@@ -1306,7 +1306,7 @@ minetest.register_node(":streets:pedlight_top_walk",{
 	},
 })
 
-minetest.register_node(":streets:pedlight_top_flashingdontwalk",{
+core.register_node(":streets:pedlight_top_flashingdontwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	is_ground_content = false,
@@ -1335,7 +1335,7 @@ minetest.register_node(":streets:pedlight_top_flashingdontwalk",{
 	},
 })
 
-minetest.register_node(":streets:pedlight_top_flashingwalk",{
+core.register_node(":streets:pedlight_top_flashingwalk",{
 	drop = "streets:pedlight_top_off",
 	groups = {cracky = 1, not_in_creative_inventory = 1},
 	is_ground_content = false,
@@ -1364,35 +1364,35 @@ minetest.register_node(":streets:pedlight_top_flashingwalk",{
 	},
 })
 
-minetest.register_entity(":streets:pedcountdown",{
+core.register_entity(":streets:pedcountdown",{
 	physical = false,
 	collisionbox = {0,0,0,0,0,0},
 	visual = "upright_sprite",
 	textures = {"streets_pl_number_0l.png"}
 })
 
-minetest.register_abm({
+core.register_abm({
 	label = "Update pedestrian countdown time display",
 	nodenames = {"streets:pedlight_top_flashingdontwalk"},
 	interval = 1,
 	chance = 1,
 	catch_up = false,
 	action = function(pos,node)
-		local meta = minetest.get_meta(pos)
-		local timer = minetest.get_node_timer(pos)
+		local meta = core.get_meta(pos)
+		local timer = core.get_node_timer(pos)
 		local totaltime = meta:get_int("flashtime")
 		local timesofar = timer:get_elapsed()
 		local timeleft = math.max(0,totaltime-timesofar)
-		local objs = minetest.get_objects_inside_radius(pos,1.5)
+		local objs = core.get_objects_inside_radius(pos,1.5)
 		for _,obj in pairs(objs) do
 			if obj:get_luaentity() and obj:get_luaentity().name == "streets:pedcountdown" then
 				obj:remove()
 			end
 		end
-		local backdir = minetest.facedir_to_dir(node.param2)
+		local backdir = core.facedir_to_dir(node.param2)
 		local frontdir = vector.multiply(backdir,-1)
 		local entpos = vector.add(vector.multiply(frontdir,-0.495),pos)
-		local entity = minetest.add_entity(entpos,"streets:pedcountdown")
+		local entity = core.add_entity(entpos,"streets:pedcountdown")
 		local yaw = 0
 		if backdir.z == -1 then
 			yaw = math.pi
@@ -1413,7 +1413,7 @@ minetest.register_abm({
 
 
 for _,i in pairs({"","_left","_right"}) do
-	minetest.register_node(":streets:trafficlight_top"..i.."_off",{
+	core.register_node(":streets:trafficlight_top"..i.."_off",{
 		description = streets.S((i == "" and "Traffic Light") or (i == "_left" and "Traffic Light (Left Turn)") or (i == "_right" and "Traffic Light (Right Turn)")),
 		drawtype="nodebox",
 		paramtype = "light",
@@ -1439,18 +1439,18 @@ for _,i in pairs({"","_left","_right"}) do
 			}
 		},
 		on_construct = function(pos)
-			local meta = minetest.get_meta(pos)
+			local meta = core.get_meta(pos)
 			meta:set_string("formspec", "field[channel;Channel;${channel}]")
 		end,
 		on_receive_fields = function(pos, formname, fields, sender)
 			if (fields.channel) then
-				minetest.get_meta(pos):set_string("channel", fields.channel)
-				minetest.get_meta(pos):set_string("state", "Off")
+				core.get_meta(pos):set_string("channel", fields.channel)
+				core.get_meta(pos):set_string("state", "Off")
 			end
 		end,
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_red",{
+	core.register_node(":streets:trafficlight_top"..i.."_red",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1476,7 +1476,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_yellow",{
+	core.register_node(":streets:trafficlight_top"..i.."_yellow",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1502,7 +1502,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_redyellow",{
+	core.register_node(":streets:trafficlight_top"..i.."_redyellow",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1528,7 +1528,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_green",{
+	core.register_node(":streets:trafficlight_top"..i.."_green",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1554,7 +1554,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_warn",{
+	core.register_node(":streets:trafficlight_top"..i.."_warn",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1583,7 +1583,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_flashred",{
+	core.register_node(":streets:trafficlight_top"..i.."_flashred",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1612,7 +1612,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_warn_alt",{
+	core.register_node(":streets:trafficlight_top"..i.."_warn_alt",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1641,7 +1641,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_flashred_alt",{
+	core.register_node(":streets:trafficlight_top"..i.."_flashred_alt",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1670,7 +1670,7 @@ for _,i in pairs({"","_left","_right"}) do
 		},
 	})
 
-	minetest.register_node(":streets:trafficlight_top"..i.."_flashgreen",{
+	core.register_node(":streets:trafficlight_top"..i.."_flashgreen",{
 		drop = "streets:trafficlight_top"..i.."_off",
 		groups = {cracky = 1, not_in_creative_inventory = 1},
 		is_ground_content = false,
@@ -1700,7 +1700,7 @@ for _,i in pairs({"","_left","_right"}) do
 	})
 end
 
-minetest.register_node(":streets:trafficlight_rrfb_off",{
+core.register_node(":streets:trafficlight_rrfb_off",{
 	description = streets.S("Rectangular Rapid Flashing Beacon"),
 	drawtype="nodebox",
 	paramtype = "light",
@@ -1726,18 +1726,18 @@ minetest.register_node(":streets:trafficlight_rrfb_off",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:trafficlight_rrfb_on",{
+core.register_node(":streets:trafficlight_rrfb_on",{
 	drop = "streets:trafficlight_rrfb_off",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -1765,18 +1765,18 @@ minetest.register_node(":streets:trafficlight_rrfb_on",{
 		}
 	},
 	on_construct = function(pos)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		meta:set_string("formspec", "field[channel;Channel;${channel}]")
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
 		if (fields.channel) then
-			minetest.get_meta(pos):set_string("channel", fields.channel)
-			minetest.get_meta(pos):set_string("state", "Off")
+			core.get_meta(pos):set_string("channel", fields.channel)
+			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
 })
 
-minetest.register_node(":streets:green_arrow",{
+core.register_node(":streets:green_arrow",{
 	description = "Straight-through green arrow",
 	drawtype="nodebox",
 	paramtype = "light",
@@ -1793,7 +1793,7 @@ minetest.register_node(":streets:green_arrow",{
 	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_straight_green.png"}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_top_off",
 	recipe = {
 		{"default:steel_ingot", "dye:red", "default:steel_ingot"},
@@ -1802,7 +1802,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_top_left_off",
 	recipe = {
 		{"dye:red", "default:steel_ingot", "default:steel_ingot"},
@@ -1811,7 +1811,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_top_right_off",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "dye:red"},
@@ -1820,7 +1820,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:pedlight_top_off",
 	recipe = {
 		{"default:steel_ingot", "dye:orange", "default:steel_ingot"},
@@ -1829,7 +1829,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_top_extender_left_off",
 	recipe = {
 		{"dye:yellow", "default:steel_ingot", "default:steel_ingot"},
@@ -1837,7 +1837,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_top_extender_right_off",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "dye:yellow"},
@@ -1845,7 +1845,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:beacon_off",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
@@ -1854,7 +1854,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:beacon_hybrid_off",
 	recipe = {
 		{"dye:red", "default:steel_ingot", "dye:red"},
@@ -1863,7 +1863,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:trafficlight_rrfb_off",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
@@ -1872,7 +1872,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:green_arrow",
 	recipe = {
 		{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
@@ -1881,7 +1881,7 @@ minetest.register_craft({
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:digiline_distributor",
 	recipe = {
 		{"", "digilines:wire_std_00000000", ""},

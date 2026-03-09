@@ -47,23 +47,23 @@ local forms = {
 }
 
 streets.workshop.signs = {}
-minetest.after(0, function()
-	for k, v in pairs(minetest.registered_nodes) do
+core.after(0, function()
+	for k, v in pairs(core.registered_nodes) do
 		if v.streets and v.streets.signworkshop then
 			table.insert(streets.workshop.signs, k)
 		end
 	end
 end)
 
-minetest.register_node(":streets:signworkshop",{
+core.register_node(":streets:signworkshop",{
 	description = streets.S("Sign workshop"),
 	tiles = {"streets_signworkshop_top.png","streets_signworkshop_bottom.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_side.png","streets_signworkshop_front.png"},
 	groups = {cracky = 1, level = 2},
 	is_ground_content = false,
 	paramtype2 = "facedir",
 	after_place_node = function(pos)
-		minetest.get_meta(pos):set_string("formspec",table.concat(forms.inactive))
-		local meta = minetest.get_meta(pos)
+		core.get_meta(pos):set_string("formspec",table.concat(forms.inactive))
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		inv:set_size("streets:signworkshop_list",5*4)
 		inv:set_size("streets:signworkshop_recipe",3*2)
@@ -91,14 +91,14 @@ minetest.register_node(":streets:signworkshop",{
 			return 1
 		-- List -> selection
 		elseif from_list == "streets:signworkshop_list" and to_list == "streets:signworkshop_select" then
-			local inv = minetest.get_meta(pos):get_inventory()
+			local inv = core.get_meta(pos):get_inventory()
 			local selected = inv:get_stack("streets:signworkshop_list",from_index):to_table()
-			local need = minetest.registered_nodes[selected.name].streets.signworkshop.recipe
+			local need = core.registered_nodes[selected.name].streets.signworkshop.recipe
 			inv:set_list("streets:signworkshop_recipe",{need[1],need[2],need[3],need[4]})
 			return 1
 		-- selection -> list
 		elseif from_list == "streets:signworkshop_select" and to_list == "streets:signworkshop_list" then
-			local inv = minetest.get_meta(pos):get_inventory()
+			local inv = core.get_meta(pos):get_inventory()
 			inv:set_list("streets:signworkshop_recipe",{"","","",""})
 			return 1
 		-- Every other case
@@ -114,12 +114,12 @@ minetest.register_node(":streets:signworkshop",{
 		end
 	end,
 	on_receive_fields = function(pos, formname, fields, sender)
-		local meta = minetest.get_meta(pos)
+		local meta = core.get_meta(pos)
 		local inv = meta:get_inventory()
 		--
 		if inv:is_empty("streets:signworkshop_input") ~= true and inv:is_empty("streets:signworkshop_select") ~= true and meta:get_string("idle") == "y" then
 			local selection = inv:get_stack("streets:signworkshop_select",1):get_name()
-			local def = minetest.registered_nodes[selection].streets.signworkshop
+			local def = core.registered_nodes[selection].streets.signworkshop
 			local need = inv:get_list("streets:signworkshop_recipe")
 			local has = inv:get_list("streets:signworkshop_input")
 			for k, v in pairs(need) do
@@ -136,7 +136,7 @@ minetest.register_node(":streets:signworkshop",{
 				meta:set_string("formspec",table.concat(forms.active) .. "label[8,4;"..streets.S("Please wait %s seconds..."):format(def.time).."]")
 				-- Clear input
 				inv:set_list("streets:signworkshop_input",{"","","",""})
-				minetest.after(def.time,function()
+				core.after(def.time,function()
 					-- Reset infotext and meta
 					meta:set_string("infotext",streets.S("Sign workshop idle"))
 					meta:set_string("idle","y")
@@ -149,7 +149,7 @@ minetest.register_node(":streets:signworkshop",{
 	end
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:signworkshop",
 	recipe = {
 		{"default:steel_ingot","default:glass","default:steel_ingot"},

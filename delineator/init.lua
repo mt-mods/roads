@@ -1,7 +1,7 @@
 --[[
 	StreetsMod: Delineator
 ]]
-minetest.register_node(":streets:delineator", {
+core.register_node(":streets:delineator", {
 	description = streets.S("Delineator"),
 	tiles = {"streets_delineator_top.png","streets_delineator.png"},
 	drawtype = "nodebox",
@@ -18,7 +18,7 @@ minetest.register_node(":streets:delineator", {
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:delineator 4",
 	recipe = {
 		{"","",""},

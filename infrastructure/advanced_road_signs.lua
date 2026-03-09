@@ -2,7 +2,7 @@
 	local signs = {"stop", "yield", "right_of_way"}
 
 	for i, sign_name in ipairs(signs) do
-		minetest.register_node("infrastructure:road_sign_"..sign_name, {
+		core.register_node("infrastructure:road_sign_"..sign_name, {
 			description = "Road sign "..sign_name,
 			tiles = {
 				"infrastructure_traffic_lights_side.png",
@@ -34,7 +34,7 @@
 			},
 
 			after_place_node = function(pos, node)
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 				local param2 = node.param2
 				local sign_pos = {x=pos.x, y=pos.y, z=pos.z}
 
@@ -48,15 +48,15 @@
 					pos.x = pos.x - 1
 				end
 
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 
-				if minetest.registered_nodes[node.name].drawtype == "fencelike" then
-					minetest.set_node(sign_pos, {name="infrastructure:road_sign_"..sign_name.."_on_post", param2=param2})
+				if core.registered_nodes[node.name].drawtype == "fencelike" then
+					core.set_node(sign_pos, {name="infrastructure:road_sign_"..sign_name.."_on_post", param2=param2})
 				end
 			end
 		})
 
-		minetest.register_node("infrastructure:road_sign_"..sign_name.."_on_post", {
+		core.register_node("infrastructure:road_sign_"..sign_name.."_on_post", {
 			tiles = {
 				"infrastructure_traffic_lights_side.png",
 				"infrastructure_traffic_lights_side.png",
@@ -91,7 +91,7 @@
 	end
 
 -- Road sign crosswalk
-	minetest.register_node("infrastructure:road_sign_crosswalk", {
+	core.register_node("infrastructure:road_sign_crosswalk", {
 		description = "Road sign crosswalk",
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
@@ -122,7 +122,7 @@
 		},
 
 		after_place_node = function(pos, node)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			local param2 = node.param2
 			local sign_pos = {x=pos.x, y=pos.y, z=pos.z}
 
@@ -136,7 +136,7 @@
 				pos.x = pos.x - 1
 			end
 
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 
 			if param2 == 0 then
 				pos.z = pos.z - 2
@@ -148,16 +148,16 @@
 				pos.x = pos.x + 2
 			end
 
-			if minetest.registered_nodes[node.name].drawtype == "fencelike" then
-				minetest.set_node(sign_pos, {name="infrastructure:road_sign_crosswalk_on_post", param2=param2})
-				minetest.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface_on_post", param2=param2})
+			if core.registered_nodes[node.name].drawtype == "fencelike" then
+				core.set_node(sign_pos, {name="infrastructure:road_sign_crosswalk_on_post", param2=param2})
+				core.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface_on_post", param2=param2})
 			else
-				minetest.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface", param2=param2})
+				core.add_node(pos, {name="infrastructure:road_sign_retroreflective_surface", param2=param2})
 			end
 		end
 	})
 
-	minetest.register_node("infrastructure:road_sign_crosswalk_on_post", {
+	core.register_node("infrastructure:road_sign_crosswalk_on_post", {
 		description = "Road sign crosswalk",
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
@@ -191,7 +191,7 @@
 		}
 	})
 
-	minetest.register_node("infrastructure:road_sign_retroreflective_surface", {
+	core.register_node("infrastructure:road_sign_retroreflective_surface", {
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
 			"infrastructure_traffic_lights_side.png",
@@ -217,7 +217,7 @@
 		}
 	})
 
-	minetest.register_node("infrastructure:road_sign_retroreflective_surface_on_post", {
+	core.register_node("infrastructure:road_sign_retroreflective_surface_on_post", {
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
 			"infrastructure_traffic_lights_side.png",

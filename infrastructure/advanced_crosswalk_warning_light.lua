@@ -1,13 +1,13 @@
 -- Crosswalk warning light
 function on_off_light(pos, node)
 	if node.name == "infrastructure:crosswalk_warning_light_off" then
-		minetest.swap_node(pos, {name = "infrastructure:crosswalk_warning_light_on", param2 = node.param2})
+		core.swap_node(pos, {name = "infrastructure:crosswalk_warning_light_on", param2 = node.param2})
 	elseif (node.name == "infrastructure:crosswalk_warning_light_on") then
-		minetest.swap_node(pos, {name = "infrastructure:crosswalk_warning_light_off", param2 = node.param2})
+		core.swap_node(pos, {name = "infrastructure:crosswalk_warning_light_off", param2 = node.param2})
 	end
 end
 
-minetest.register_node("infrastructure:crosswalk_warning_light_off", {
+core.register_node("infrastructure:crosswalk_warning_light_off", {
 	description = "Crosswalk warning light",
 	inventory_image = "infrastructure_crosswalk_warning_light_front_bright.png",
 	wield_image = "infrastructure_crosswalk_warning_light_front_bright.png",
@@ -66,7 +66,7 @@ minetest.register_node("infrastructure:crosswalk_warning_light_off", {
 	}}
 })
 
-minetest.register_node("infrastructure:crosswalk_warning_light_on", {
+core.register_node("infrastructure:crosswalk_warning_light_on", {
 	tiles = {
 		"infrastructure_traffic_lights_side.png",
 		"infrastructure_traffic_lights_side.png",
@@ -123,6 +123,6 @@ minetest.register_node("infrastructure:crosswalk_warning_light_on", {
 	}}
 })
 
-minetest.register_alias("infrastructure:crosswalk_warning_light", "infrastructure:crosswalk_warning_light_off")
-minetest.register_alias("infrastructure:crosswalk_warning_bright", "infrastructure:crosswalk_warning_light_on")
-minetest.register_alias("infrastructure:crosswalk_warning_dark", "infrastructure:crosswalk_warning_light_on")
+core.register_alias("infrastructure:crosswalk_warning_light", "infrastructure:crosswalk_warning_light_off")
+core.register_alias("infrastructure:crosswalk_warning_bright", "infrastructure:crosswalk_warning_light_on")
+core.register_alias("infrastructure:crosswalk_warning_dark", "infrastructure:crosswalk_warning_light_on")

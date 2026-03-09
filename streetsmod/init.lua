@@ -9,8 +9,8 @@ streets	= {}
 
 -- Kaeza intllib
 	-- Boilerplate to support localized strings if intllib mod is installed.
-	if minetest.get_modpath("intllib") then
-		streets.S = intllib.Getter()
+	if core.get_modpath("intllib") then
+		streets.S = intllib.make_gettext_pair()
 	else
 		streets.S = function(s) return s end
 	end
@@ -18,7 +18,7 @@ streets	= {}
 -- Create variable and tables
 	print("Streets: " .. streets.S("Creating variables and tables..."))
 	streets.version	= "1.5"
-	streets.modpath = minetest.get_modpath("streetsmod")
+	streets.modpath = core.get_modpath("streetsmod")
 	streets.extendedBy	= {}
 	streets.load = {
 		start = os.clock(),
@@ -27,7 +27,7 @@ streets	= {}
 	streets.forms = {}
 
 -- rubenwardy: smartfs
-	if not minetest.get_modpath("smartfs") then
+	if not core.get_modpath("smartfs") then
 		dofile(streets.modpath .. "/libs/smartfs/smartfs.lua")
 	end
 	
@@ -36,37 +36,37 @@ streets	= {}
 	
 -- Check for mods which change this mod's beahaviour
 	print("Streets: " .. streets.S("Checking installed mods..."))
-	if minetest.get_modpath("wool")	 then
+	if core.get_modpath("wool")	 then
 		streets.extendedBy.wool = true
 	else
 		streets.extendedBy.wool = false
 	end
-	if minetest.get_modpath("technic")	then
+	if core.get_modpath("technic")	then
 		streets.extendedBy.technic = true
 	else
 		streets.extendedBy.technic = false
 	end
-	if minetest.get_modpath("moreblocks") then
+	if core.get_modpath("moreblocks") then
 		streets.extendedBy.moreblocks = true
 	else
 		streets.extendedBy.moreblocks = false
 	end
-	if minetest.get_modpath("mesecons") then
+	if core.get_modpath("mesecons") then
 		streets.extendedBy.mesecons = true
 	else
 		streets.extendedBy.mesecons = false
 	end
-	if minetest.get_modpath("digilines") then
+	if core.get_modpath("digilines") then
 		streets.extendedBy.digilines = true
 	else
 		streets.extendedBy.digilines = false
 	end
-	if minetest.get_modpath("prefab") then
+	if core.get_modpath("prefab") then
 		streets.extendedBy.prefab = true
 	else
 		streets.extendedBy.prefab = false
 	end
-	if minetest.get_modpath("awards") then
+	if core.get_modpath("awards") then
 		streets.extendedBy.awards = true
 	else
 		streets.extendedBy.awards = false
@@ -77,7 +77,7 @@ streets	= {}
 		local mult = 10^(idp or 0)
 		return math.floor(num * mult + 0.5) / mult
 	end
-	minetest.register_chatcommand("streets",{
+	core.register_chatcommand("streets",{
 		description = streets.S("Check version of your installed StreetsMod and find information"),
 		func = function(name,param)
 			streets.forms.chatcmd:show(name);

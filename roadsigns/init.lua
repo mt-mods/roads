@@ -5,7 +5,7 @@ streets.workshop = {}
 
 streets.workshop.register_sign  = function(nodename, desc, img, rrecipe, rtime)
 
-	minetest.register_node(nodename,{
+	core.register_node(nodename,{
 		description = desc,
 		tiles = {img},
 		inventory_image = img,
@@ -13,7 +13,7 @@ streets.workshop.register_sign  = function(nodename, desc, img, rrecipe, rtime)
 		groups = {snappy = 1,attached_node = 1},
 		is_ground_content = false,
 		on_construct = function(pos)
-			local meta = minetest.get_meta(pos)
+			local meta = core.get_meta(pos)
 			meta:set_string("infotext", desc)
 		end,
 		drawtype = "nodebox",
@@ -39,5 +39,5 @@ streets.workshop.register_sign  = function(nodename, desc, img, rrecipe, rtime)
 	})
 end
 
-dofile(minetest.get_modpath(minetest.get_current_modname()) .. "/signs.lua")
-dofile(minetest.get_modpath(minetest.get_current_modname()) .. "/workshop.lua")
+dofile(core.get_modpath(core.get_current_modname()) .. "/signs.lua")
+dofile(core.get_modpath(core.get_current_modname()) .. "/workshop.lua")

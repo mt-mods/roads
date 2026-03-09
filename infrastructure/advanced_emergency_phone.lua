@@ -1,6 +1,6 @@
 -- Emergency phone (only if enabled)
 	if ENABLE_EMERGENCY_PHONE then
-		minetest.register_node("infrastructure:emergency_phone_top", {
+		core.register_node("infrastructure:emergency_phone_top", {
 			description = "Emergency phone",
 			tiles = {
 				"infrastructure_emergency_phone_top.png",
@@ -38,30 +38,30 @@
 
 			after_dig_node = function(pos)
 				pos.y = pos.y - 1
-				if minetest.get_node(pos).name == "infrastructure:emergency_phone_bottom" then
-					minetest.remove_node(pos)
+				if core.get_node(pos).name == "infrastructure:emergency_phone_bottom" then
+					core.remove_node(pos)
 				end
 			end,
 
 			on_punch = function(pos, node, puncher)
 				if dial_handler ~= nil then
-					minetest.sound_stop(dial_handler)
+					core.sound_stop(dial_handler)
 					dial_handler = nil
 				end
-				dial_handler = minetest.sound_play("infrastructure_emergency_phone", {
+				dial_handler = core.sound_play("infrastructure_emergency_phone", {
 					pos = pos,
 					gain = EMERGENCY_PHONE_VOLUME,
 					max_hear_distance = 50
 				})
 				if (puncher:is_player() and puncher:get_hp() < HEALTH_TO_RESTORING and puncher:get_hp() <= HEALTH_TO_TRIGGER) then
 					puncher:set_hp(HEALTH_TO_RESTORING)
-					minetest.chat_send_player(puncher:get_player_name(), "You got healed!")
-					minetest.chat_send_all("Server: -!- "..puncher:get_player_name().." used an emergency phone at "..pos.x..","..pos.y..","..pos.z);
+					core.chat_send_player(puncher:get_player_name(), "You got healed!")
+					core.chat_send_all("Server: -!- "..puncher:get_player_name().." used an emergency phone at "..pos.x..","..pos.y..","..pos.z);
 				end
 			end
 		})
 
-		minetest.register_node("infrastructure:emergency_phone_bottom", {
+		core.register_node("infrastructure:emergency_phone_bottom", {
 			tiles = {"infrastructure_emergency_phone_bottom.png"},
 			drawtype = "nodebox",
 			drop = "streets:emergencyphone",
@@ -80,28 +80,28 @@
 
 			after_dig_node = function(pos)
 				pos.y = pos.y+1
-				if minetest.get_node(pos).name == "infrastructure:emergency_phone_top" then
-					minetest.remove_node(pos)
+				if core.get_node(pos).name == "infrastructure:emergency_phone_top" then
+					core.remove_node(pos)
 				end
 			end,
 		})
 
-		minetest.register_alias("infrastructure:emergency_phone", "infrastructure:emergency_phone_top")
+		core.register_alias("infrastructure:emergency_phone", "infrastructure:emergency_phone_top")
 
-		minetest.register_abm({
+		core.register_abm({
 			nodenames = {"streets:emergencyphone"},
 			interval = 1,
 			chance = 1,
 			action = function(pos, node)
-				local node = minetest.get_node(pos)
-				local node_above = minetest.get_node({x=pos.x,y=pos.y+1,z=pos.z})
+				local node = core.get_node(pos)
+				local node_above = core.get_node({x=pos.x,y=pos.y+1,z=pos.z})
 				if node_above.name == "air" then
 					node.name = "infrastructure:emergency_phone_bottom"
-					minetest.set_node(pos, node)
+					core.set_node(pos, node)
 					pos.y = pos.y+1
 				end
 				node.name = "infrastructure:emergency_phone_top"
-				minetest.set_node(pos, node)
+				core.set_node(pos, node)
 			end,
 		})
 	else

@@ -9,13 +9,13 @@ labels.printer = {}
 labels.printer.marktypes = {}
 
 function labels.printer.can_dig(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	return (inv:is_empty("whitecart") and inv:is_empty("yellowcart") and inv:is_empty("paper"))
 end
 
 function labels.printer.checksupplies(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local whitecart = inv:get_stack("whitecart",1)
 	local yellowcart = inv:get_stack("yellowcart",1)
@@ -31,7 +31,7 @@ function labels.printer.checksupplies(pos)
 end
 
 function labels.printer.nom(pos,color,amount)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local whitecart = inv:get_stack("whitecart",1)
 	local yellowcart = inv:get_stack("yellowcart",1)
@@ -50,7 +50,7 @@ end
 function labels.printer.populateoutput(pos)
 	local typescount = #labels.printer.marktypes
 	local pagesize = 8*5
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	local page = meta:get_int("page")
 	local maxpage = math.ceil(typescount/pagesize)
@@ -77,7 +77,7 @@ function labels.printer.populateoutput(pos)
 end
 
 function labels.printer.on_construct(pos)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local inv = meta:get_inventory()
 	meta:set_int("page",1)
 	meta:set_int("maxpage",1)
@@ -88,7 +88,7 @@ function labels.printer.on_construct(pos)
 end
 
 function labels.printer.on_receive_fields(pos, formname, fields, sender)
-	local meta = minetest.get_meta(pos)
+	local meta = core.get_meta(pos)
 	local page = meta:get_int("page")
 	local maxpage = meta:get_int("maxpage")
 	if fields.prevpage then
@@ -148,52 +148,52 @@ function labels.printer.allow_metadata_inventory_move(pos, from_list, from_index
 	return 0
 end
 
-minetest.register_tool(":streets:yellowcartridge",{
+core.register_tool(":streets:yellowcartridge",{
 	description = "Yellow Ink Cartridge",
 	inventory_image = "streets_yellow_cartridge.png"
 	}
 )
 
-minetest.register_tool(":streets:whitecartridge",{
+core.register_tool(":streets:whitecartridge",{
 	description = "White Ink Cartridge",
 	inventory_image = "streets_white_cartridge.png"
 	}
 )
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:yellowcartridge",
 	recipe =       {{"homedecor:plastic_sheeting","homedecor:plastic_sheeting","homedecor:plastic_sheeting"},
 			{"homedecor:plastic_sheeting","dye:yellow","homedecor:plastic_sheeting"},
 			{"homedecor:plastic_sheeting","",""}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:whitecartridge",
 	recipe =       {{"homedecor:plastic_sheeting","homedecor:plastic_sheeting","homedecor:plastic_sheeting"},
 			{"homedecor:plastic_sheeting","dye:white","homedecor:plastic_sheeting"},
 			{"homedecor:plastic_sheeting","",""}}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:yellowcartridge",
 	type = "shapeless",
 	recipe =       {"streets:yellowcartridge","dye:yellow"}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:whitecartridge",
 	type = "shapeless",
 	recipe =       {"streets:whitecartridge","dye:white"}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:printer",
 	recipe =       {{"","homedecor:plastic_sheeting","basic_materials:energy_crystal_simple"},
 			{"homedecor:motor","default:steel_ingot","group:wool"},
 			{"","homedecor:plastic_sheeting","homedecor:motor"}}
 })
 
-minetest.register_node(":streets:printer", {
+core.register_node(":streets:printer", {
 	description = "Road Markings Printer",
 	inventory_image = "streets_printer_inv.png",
 	tiles = {"streets_printer_t.png","streets_printer_bt.png","streets_printer_l.png",
@@ -230,7 +230,7 @@ minetest.register_node(":streets:printer", {
 streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 	local groups = {snappy = 3,attached_node = 1,oddly_breakable_by_hand = 1}
 	if hide then groups.not_in_creative_inventory = 1 end
-	minetest.register_node(":streets:mark_"..name,{
+	core.register_node(":streets:mark_"..name,{
 		description = streets.S("Marking Overlay: "..friendlyname),
 		tiles = {tex,"streets_rw_transparent.png"},
 		drawtype = "nodebox",
@@ -244,14 +244,14 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 		wield_image = tex,
 		use_texture_alpha = "clip",
 		after_place_node = function(pos)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			local lower_pos = {x = pos.x, y = pos.y-1, z = pos.z}
-			local lower_node = minetest.get_node(lower_pos)
+			local lower_node = core.get_node(lower_pos)
 			if lower_node.name == "streets:asphalt" then
 				lower_node.name = "streets:mark_"..(node.name:sub(14)).."_on_asphalt"
 				lower_node.param2 = node.param2
-				minetest.set_node(lower_pos,lower_node)
-				minetest.remove_node(pos)
+				core.set_node(lower_pos,lower_node)
+				core.remove_node(pos)
 			end
 		end,
 		node_box = {
@@ -264,25 +264,27 @@ streets.register_label = function(friendlyname,name,tex,color,ink_needed,hide)
 		}
 	})
 
-	minetest.register_node(":streets:mark_"..name.."_on_asphalt",{
+	core.register_node(":streets:mark_"..name.."_on_asphalt",{
 		description = streets.S("Asphalt With Marking: "..friendlyname),
 		groups = {cracky=3},
 		is_ground_content = false,
 		tiles = {"streets_asphalt.png^"..tex,"streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^"..tex.."^[transformR180","streets_asphalt.png^"..tex},
-		paramtype2 = "facedir"
+		paramtype2 = "facedir",
+		sounds = default.node_sound_stone_defaults(),
 	})
 
-	minetest.register_craft({
+	core.register_craft({
 		output = "streets:mark_"..name.."_on_asphalt",
 		type = "shapeless",
 		recipe = {"streets:asphalt","streets:mark_"..name}
 	})
 
-	if minetest.get_modpath("moreblocks") then
+	if core.get_modpath("moreblocks") then
 		stairsplus:register_all("streets", name, "streets:mark_"..name.."_on_asphalt", {
 			description = "Asphalt with Marking: "..friendlyname,
 			tiles = {"streets_asphalt.png^"..tex,"streets_asphalt.png","streets_asphalt.png","streets_asphalt.png","streets_asphalt.png^"..tex.."^[transformR180","streets_asphalt.png^"..tex},
-			groups = {cracky=3}
+			groups = {cracky=3},
+			sounds = default.node_sound_stone_defaults(),
 		})
 	end
 	local printdata = {name="streets:mark_"..name,color=color,inkamt=ink_needed}
@@ -295,135 +297,135 @@ streets.register_label("All-White","all_white","streets_all_white.png","white",9
 
 streets.register_label("Solid White Side Line","solid_white_side_line","streets_asphalt_side.png","white",3)
 
-minetest.register_alias("streets:asphalt_side","streets:mark_solid_white_side_line_on_asphalt")
-minetest.register_alias("streets:asphalt_sideline","streets:mark_solid_white_side_line_on_asphalt")
+core.register_alias("streets:asphalt_side","streets:mark_solid_white_side_line_on_asphalt")
+core.register_alias("streets:asphalt_sideline","streets:mark_solid_white_side_line_on_asphalt")
 
 streets.register_label("Solid White Side Line (rotated)","solid_white_side_line_rotated","streets_asphalt_side.png^[transformR180","white",3,true)
 
-minetest.register_alias("streets:asphalt_sideline_r","streets:mark_solid_white_side_line_rotated_on_asphalt")
+core.register_alias("streets:asphalt_sideline_r","streets:mark_solid_white_side_line_rotated_on_asphalt")
 
 
 streets.register_label("Solid White Center Line","solid_white_center_line","streets_asphalt_solid_line.png","white",2)
 
-minetest.register_alias("streets:asphalt_middle","streets:mark_solid_white_center_line_on_asphalt")
-minetest.register_alias("streets:asphalt_solid_line","streets:mark_solid_white_center_line_on_asphalt")
+core.register_alias("streets:asphalt_middle","streets:mark_solid_white_center_line_on_asphalt")
+core.register_alias("streets:asphalt_solid_line","streets:mark_solid_white_center_line_on_asphalt")
 
 
 streets.register_label("Dashed White Center Line","dashed_white_center_line","streets_asphalt_dashed_line.png","white",1)
 
-minetest.register_alias("streets:asphalt_middle_dashed","streets:mark_dashed_white_center_line_on_asphalt")
-minetest.register_alias("streets:asphalt_dashed_line","streets:mark_dashed_white_center_line_on_asphalt")
+core.register_alias("streets:asphalt_middle_dashed","streets:mark_dashed_white_center_line_on_asphalt")
+core.register_alias("streets:asphalt_dashed_line","streets:mark_dashed_white_center_line_on_asphalt")
 
 
 streets.register_label("Solid White Side Line (corner)","solid_white_side_line_corner","streets_asphalt_outer_edge.png","white",4)
 
-minetest.register_alias("streets:asphalt_outer_edge","streets:mark_solid_white_side_line_corner_on_asphalt")
+core.register_alias("streets:asphalt_outer_edge","streets:mark_solid_white_side_line_corner_on_asphalt")
 
 
 streets.register_label("Solid White Side Line (corner, rotated)","solid_white_side_line_corner_rotated","streets_asphalt_outer_edge.png^[transformR270","white",4,true)
 
-minetest.register_alias("streets:asphalt_outer_edge_r","streets:mark_solid_white_side_line_corner_rotated_on_asphalt")
+core.register_alias("streets:asphalt_outer_edge_r","streets:mark_solid_white_side_line_corner_rotated_on_asphalt")
 
 
 streets.register_label("Parking (white)","white_parking","streets_parking.png","white",4)
 
-minetest.register_alias("streets:asphalt_parking","streets:mark_white_parking_on_asphalt")
+core.register_alias("streets:asphalt_parking","streets:mark_white_parking_on_asphalt")
 
 
 streets.register_label("White Arrow (straight)","white_arrow_straight","streets_arrow_straight.png","white",3)
 
-minetest.register_alias("streets:asphalt_arrow_straight","streets:mark_white_arrow_straight_on_asphalt")
+core.register_alias("streets:asphalt_arrow_straight","streets:mark_white_arrow_straight_on_asphalt")
 
 
 streets.register_label("White Arrow (left)","white_arrow_left","streets_arrow_left.png","white",3)
 
-minetest.register_alias("streets:asphalt_arrow_left","streets:mark_white_arrow_left_on_asphalt")
+core.register_alias("streets:asphalt_arrow_left","streets:mark_white_arrow_left_on_asphalt")
 
 
 streets.register_label("White Arrow (right)","white_arrow_right","streets_arrow_right.png","white",3)
 
-minetest.register_alias("streets:asphalt_arrow_right","streets:mark_white_arrow_right_on_asphalt")
+core.register_alias("streets:asphalt_arrow_right","streets:mark_white_arrow_right_on_asphalt")
 
 
 streets.register_label("White Arrow (left+straight)","white_arrow_left_straight","streets_arrow_straight_left.png","white",4)
 
-minetest.register_alias("streets:asphalt_arrow_straight_left","streets:mark_white_arrow_left_straight_on_asphalt")
+core.register_alias("streets:asphalt_arrow_straight_left","streets:mark_white_arrow_left_straight_on_asphalt")
 
 
 streets.register_label("White Arrow (straight+right)","white_arrow_straight_right","streets_arrow_straight_right.png","white",4)
 
-minetest.register_alias("streets:asphalt_arrow_straight_right","streets:mark_white_arrow_straight_right_on_asphalt")
+core.register_alias("streets:asphalt_arrow_straight_right","streets:mark_white_arrow_straight_right_on_asphalt")
 
 
 streets.register_label("White Arrow (left+straight+right)","white_arrow_left_straight_right","streets_arrow_alldirs.png","white",5)
 
-minetest.register_alias("streets:asphalt_arrow_alldirs","streets:mark_white_arrow_left_straight_right_on_asphalt")
+core.register_alias("streets:asphalt_arrow_alldirs","streets:mark_white_arrow_left_straight_right_on_asphalt")
 
 
 --Yellow streetsmod markings
 
 streets.register_label("Solid Yellow Center Line","solid_yellow_center_line","streets_rw_solid_line.png","yellow",3)
 
-minetest.register_alias("streets:rw_asphalt_solid","streets:mark_solid_yellow_center_line")
+core.register_alias("streets:rw_asphalt_solid","streets:mark_solid_yellow_center_line")
 
 
 streets.register_label("Dashed Yellow Center Line","dashed_yellow_center_line","streets_rw_dashed_line.png","yellow",2)
 
-minetest.register_alias("streets:rw_asphalt_dashed","streets:mark_dashed_yellow_center_line")
+core.register_alias("streets:rw_asphalt_dashed","streets:mark_dashed_yellow_center_line")
 
 
 streets.register_label("Yellow X","yellow_x","streets_rw_cross.png","yellow",3)
 
-minetest.register_alias("streets:rw_cross","streets:mark_yellow_x")
+core.register_alias("streets:rw_cross","streets:mark_yellow_x")
 
 
 streets.register_label("Solid Yellow Side Line (corner)","solid_yellow_side_line_corner","streets_rw_outer_edge.png","yellow",4)
 
-minetest.register_alias("streets:rw_outer_edge","streets:solid_yellow_side_line_corner")
+core.register_alias("streets:rw_outer_edge","streets:solid_yellow_side_line_corner")
 
 
 streets.register_label("Solid Yellow Side Line (corner,rotated)","solid_yellow_side_line_corner_rotated","streets_rw_outer_edge.png^[transformR270","yellow",5,true)
 
-minetest.register_alias("streets:rw_outer_edge","streets:solid_yellow_side_line_corner")
+core.register_alias("streets:rw_outer_edge","streets:solid_yellow_side_line_corner")
 
 
 streets.register_label("Parking (yellow)","yellow_parking","streets_rw_parking.png","yellow",4)
 
-minetest.register_alias("streets:rw_parking","streets:mark_yellow_parking")
+core.register_alias("streets:rw_parking","streets:mark_yellow_parking")
 
 
 streets.register_label("Yellow Arrow (straight)","yellow_arrow_straight","streets_rw_arrow_straight.png","yellow",3)
 
-minetest.register_alias("streets:rw_straight","streets:mark_yellow_arrow_straight")
+core.register_alias("streets:rw_straight","streets:mark_yellow_arrow_straight")
 
 
 streets.register_label("Yellow Arrow (left)","yellow_arrow_left","streets_rw_arrow_left.png","yellow",3)
 
-minetest.register_alias("streets:rw_left","streets:mark_yellow_arrow_left")
+core.register_alias("streets:rw_left","streets:mark_yellow_arrow_left")
 
 
 streets.register_label("Yellow Arrow (right)","yellow_arrow_right","streets_rw_arrow_right.png","yellow",3)
 
-minetest.register_alias("streets:rw_right","streets:mark_yellow_arrow_right")
+core.register_alias("streets:rw_right","streets:mark_yellow_arrow_right")
 
 
 streets.register_label("Yellow Arrow (left+straight)","yellow_arrow_left_straight","streets_rw_arrow_straight_left.png","yellow",4)
 
-minetest.register_alias("streets:rw_straight_left","streets:mark_yellow_arrow_left_straight")
+core.register_alias("streets:rw_straight_left","streets:mark_yellow_arrow_left_straight")
 
 
 streets.register_label("Yellow Arrow (straight+right)","yellow_arrow_straight_right","streets_rw_arrow_straight_right.png","yellow",4)
 
-minetest.register_alias("streets:rw_straight_right","streets:mark_yellow_arrow_straight_right")
+core.register_alias("streets:rw_straight_right","streets:mark_yellow_arrow_straight_right")
 
 
 streets.register_label("Yellow Arrow (left+straight+right)","yellow_arrow_left_straight_right","streets_rw_arrow_alldirs.png","yellow",5)
 
-minetest.register_alias("streets:rw_alldirs","streets:mark_yellow_arrow_left_straight_right")
+core.register_alias("streets:rw_alldirs","streets:mark_yellow_arrow_left_straight_right")
 
 streets.register_label("Solid Yellow Side Line","solid_yellow_side_line","streets_rw_asphalt_side.png","yellow",3)
 
-minetest.register_alias("streets:rw_sideline","streets:mark_solid_yellow_side_line")
+core.register_alias("streets:rw_sideline","streets:mark_solid_yellow_side_line")
 
 streets.register_label("Solid Yellow Side Line (rotated)","solid_yellow_side_line_rotated","streets_rw_asphalt_side.png^[transformR180","yellow",3,true)
 
@@ -433,42 +435,42 @@ streets.register_label("Yellow Diagonal Lines","yellow_diagonal","streets_yellow
 
 streets.register_label("Solid Yellow Center Line (wide)","solid_yellow_center_line_wide","infrastructure_single_yellow_line.png","yellow",4)
 
-minetest.register_alias("infrastructure:asphalt_center_solid_line","streets:mark_solid_yellow_center_line_wide_on_asphalt")
+core.register_alias("infrastructure:asphalt_center_solid_line","streets:mark_solid_yellow_center_line_wide_on_asphalt")
 
 
 streets.register_label("Solid Yellow Center Line (wide,offset)","solid_yellow_center_line_wide_offset","infrastructure_solid_yellow_line_one_side.png","yellow",4)
 
-minetest.register_alias("infrastructure:asphalt_center_solid_one_side","streets:mark_solid_yellow_center_line_wide_offset_on_asphalt")
+core.register_alias("infrastructure:asphalt_center_solid_one_side","streets:mark_solid_yellow_center_line_wide_offset_on_asphalt")
 
 
 streets.register_label("Double Yellow Center Line (wide)","double_yellow_center_line_wide","infrastructure_double_yellow_line.png","yellow",6)
 
-minetest.register_alias("infrastructure:asphalt_center_solid_double","streets:mark_double_yellow_center_line_wide_on_asphalt")
+core.register_alias("infrastructure:asphalt_center_solid_double","streets:mark_double_yellow_center_line_wide_on_asphalt")
 
 
 streets.register_label("Solid Yellow Center Line (wide,corner)","solid_yellow_center_line_wide_corner","infrastructure_single_yellow_line_corner.png","yellow",4)
 
-minetest.register_alias("infrastructure:asphalt_center_corner_single","streets:mark_solid_yellow_center_line_wide_corner_on_asphalt")
+core.register_alias("infrastructure:asphalt_center_corner_single","streets:mark_solid_yellow_center_line_wide_corner_on_asphalt")
 
 
 streets.register_label("Double Yellow Center Line (wide,corner)","double_yellow_center_line_wide_corner","infrastructure_solid_double_yellow_line_corner.png","yellow",6)
 
-minetest.register_alias("infrastructure:asphalt_center_corner_double","streets:mark_double_yellow_center_line_wide_corner_on_asphalt")
+core.register_alias("infrastructure:asphalt_center_corner_double","streets:mark_double_yellow_center_line_wide_corner_on_asphalt")
 
 
-minetest.register_alias("infrastructure:asphalt_arrow_straight", "streets:asphalt_arrow_straight")
+core.register_alias("infrastructure:asphalt_arrow_straight", "streets:asphalt_arrow_straight")
 
 
-minetest.register_alias("infrastructure:asphalt_arrow_straight_left", "streets:asphalt_arrow_straight_left")
+core.register_alias("infrastructure:asphalt_arrow_straight_left", "streets:asphalt_arrow_straight_left")
 
 
-minetest.register_alias("infrastructure:asphalt_arrow_straight_right", "streets:asphalt_arrow_straight_left")
+core.register_alias("infrastructure:asphalt_arrow_straight_right", "streets:asphalt_arrow_straight_left")
 
 
-minetest.register_alias("infrastructure:asphalt_arrow_left", "streets:asphalt_arrow_left")
+core.register_alias("infrastructure:asphalt_arrow_left", "streets:asphalt_arrow_left")
 
 
-minetest.register_alias("infrastructure:asphalt_arrow_right", "streets:asphalt_arrow_right")
+core.register_alias("infrastructure:asphalt_arrow_right", "streets:asphalt_arrow_right")
 
 
-minetest.register_alias("infrastructure:asphalt_parking", "streets:asphalt_parking")
+core.register_alias("infrastructure:asphalt_parking", "streets:asphalt_parking")

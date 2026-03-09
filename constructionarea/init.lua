@@ -1,4 +1,4 @@
-minetest.register_node(":streets:constructionfence_bottom",{
+core.register_node(":streets:constructionfence_bottom",{
 	description = streets.S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_bottom.png","streets_fence_bottom.png"},
 	groups = {cracky = 2, disable_jump = 1},
@@ -23,19 +23,19 @@ minetest.register_node(":streets:constructionfence_bottom",{
 	},
 	after_dig_node = function(pos,node,digger)
 		pos.y = pos.y + 1
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end,
 	after_place_node = function(pos,placer,itemstack)
 		pos.y = pos.y + 1
-		if minetest.get_node(pos).name == "air" then
-			minetest.add_node(pos,{name = "streets:constructionfence_top", param2 = minetest.dir_to_facedir(placer:get_look_dir())})
+		if core.get_node(pos).name == "air" then
+			core.add_node(pos,{name = "streets:constructionfence_top", param2 = core.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.chat_send_player(placer:get_player_name(),"Not enough free space! A construction fence has a height of 2 blocks!")
+			core.chat_send_player(placer:get_player_name(),"Not enough free space! A construction fence has a height of 2 blocks!")
 		end
 	end
 })
 
-minetest.register_node(":streets:constructionfence_top",{
+core.register_node(":streets:constructionfence_top",{
 	description = streets.S("Construction fence"),
 	tiles = {"streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_fromtop.png","streets_fence_top.png","streets_fence_top.png"},
 	groups = {cracky = 2, not_in_creative_inventory = 1, disable_jump = 1},
@@ -58,11 +58,11 @@ minetest.register_node(":streets:constructionfence_top",{
 	},
 	after_dig_node = function(pos,node,digger)
 		pos.y = pos.y - 1
-		minetest.remove_node(pos)
+		core.remove_node(pos)
 	end
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:constructionfence_bottom 8",
 	recipe = {
 		{"","",""},
