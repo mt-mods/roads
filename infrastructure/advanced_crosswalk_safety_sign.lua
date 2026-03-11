@@ -1,5 +1,5 @@
 -- Crosswalk safety sign
-	minetest.register_node("infrastructure:crosswalk_safety_sign_top", {
+	core.register_node("infrastructure:crosswalk_safety_sign_top", {
 		tiles = {
 			"infrastructure_crosswalk_safety_sign_top.png",
 			"infrastructure_traffic_lights_side.png",
@@ -28,7 +28,7 @@
 		}
 	})
 
-	minetest.register_node("infrastructure:crosswalk_safety_sign_bottom", {
+	core.register_node("infrastructure:crosswalk_safety_sign_bottom", {
 		description = "Crosswalk safety sign",
 		inventory_image = "infrastructure_crosswalk_safety_sign.png",
 		wield_image = "infrastructure_crosswalk_safety_sign.png",
@@ -70,18 +70,18 @@
 		},
 
 		after_place_node = function(pos)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			node.name = "infrastructure:crosswalk_safety_sign_bottom"
-			minetest.add_node(pos, node)
+			core.add_node(pos, node)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:crosswalk_safety_sign_top"
-			minetest.add_node(pos, node)
+			core.add_node(pos, node)
 		end,
 
 		after_dig_node = function(pos)
 			pos.y = pos.y + 1
-			minetest.remove_node(pos)
+			core.remove_node(pos)
 		end,
 	})
 
-	minetest.register_alias("infrastructure:crosswalk_safety_sign", "infrastructure:crosswalk_safety_sign_bottom")
+	core.register_alias("infrastructure:crosswalk_safety_sign", "infrastructure:crosswalk_safety_sign_bottom")

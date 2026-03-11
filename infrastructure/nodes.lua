@@ -1,16 +1,16 @@
 -- **************************************************************************************************** MATERIALS
 
 -- Asphalt block
-	minetest.register_alias("infrastructure:asphalt", "streets:asphalt")
+	core.register_alias("infrastructure:asphalt", "streets:asphalt")
 
 -- Concrete block
-	minetest.register_alias("infrastructure:concrete", "technic:concrete")
+	core.register_alias("infrastructure:concrete", "technic:concrete")
 
 -- Concrete fence
-	minetest.register_alias("infrastructure:fence_concrete", "prefab:concrete_fence")
+	core.register_alias("infrastructure:fence_concrete", "prefab:concrete_fence")
 
 -- Galvanized steel block
-	minetest.register_node("infrastructure:galvanized_steel", {
+	core.register_node("infrastructure:galvanized_steel", {
 		description = "Galvanized steel",
 		tiles = {"infrastructure_galvanized_steel.png"},
 		drawtype = "normal",
@@ -18,10 +18,10 @@
 		groups = {cracky = 2},
 		is_ground_content = false,
 	})
-	minetest.register_alias("galvanized_steel", "infrastructure:galvanized_steel")
+	core.register_alias("galvanized_steel", "infrastructure:galvanized_steel")
 
 -- Galvanized steel fence
-	minetest.register_node("infrastructure:fence_galvanized_steel", {
+	core.register_node("infrastructure:fence_galvanized_steel", {
 		description = "Galvanized steel fence",
 		drawtype = "fencelike",
 		tiles = {"infrastructure_galvanized_steel.png"},
@@ -38,7 +38,7 @@
 -- **************************************************************************************************** PRECAST CONCRETE
 
 -- Concrete seperating wall
-	minetest.register_node("infrastructure:precast_concrete_seperating_wall", {
+	core.register_node("infrastructure:precast_concrete_seperating_wall", {
 		description = "Precast concrete seperating wall",
 		tiles = {"infrastructure_concrete.png"},
 		drawtype = "nodebox",
@@ -67,7 +67,7 @@
 	})
 
 -- Concrete cylinder
-	minetest.register_node("infrastructure:precast_concrete_cylinder", {
+	core.register_node("infrastructure:precast_concrete_cylinder", {
 		description = "Precast concrete cylinder",
 		tiles = {"infrastructure_concrete.png"},
 		drawtype = "nodebox",
@@ -98,7 +98,7 @@
 	})
 
 -- Concrete grid paver
-	minetest.register_node("infrastructure:precast_concrete_grid_paver", {
+	core.register_node("infrastructure:precast_concrete_grid_paver", {
 		description = "Precast concrete grid paver",
 		tiles = {
 			"infrastructure_grid_paver_top.png",
@@ -135,17 +135,17 @@
 
 		after_place_node = function(pos)
 			pos.y = pos.y - 1
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			if (node.name == "default:dirt_with_grass") then
 				pos.y = pos.y + 1
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 				node.name = "infrastructure:precast_concrete_grid_paver_with_grass"
-				minetest.swap_node(pos, node)
+				core.swap_node(pos, node)
 			end
 		end
 	})
 
-	minetest.register_node("infrastructure:precast_concrete_grid_paver_with_grass", {
+	core.register_node("infrastructure:precast_concrete_grid_paver_with_grass", {
 		description = "Precast concrete grid paver with grass",
 		tiles = {
 			"infrastructure_grid_paver_top.png",
@@ -198,16 +198,16 @@
 		},
 
 		on_punch = function(pos, node)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			node.name = "infrastructure:precast_concrete_grid_paver"
-			minetest.swap_node(pos, node)
+			core.swap_node(pos, node)
 		end
 	})
 
 -- **************************************************************************************************** STEEL STRUCTURES
 
 -- Truss
-	minetest.register_node("infrastructure:truss", {
+	core.register_node("infrastructure:truss", {
 		description = "Truss",
 		tiles = {"infrastructure_truss.png"},
 		use_texture_alpha = "clip",
@@ -233,7 +233,7 @@
 	})
 
 -- Wire netting
-	minetest.register_node("infrastructure:wire_netting", {
+	core.register_node("infrastructure:wire_netting", {
 		description = "Wire netting",
 		tiles = {"infrastructure_wire_netting.png"},
 		use_texture_alpha = "clip",
@@ -253,7 +253,7 @@
 	})
 
 -- Razor wire
-	minetest.register_node("infrastructure:razor_wire", {
+	core.register_node("infrastructure:razor_wire", {
 		description = "Razor wire",
 		tiles = {"infrastructure_razor_wire.png"},
 		use_texture_alpha = "clip",
@@ -281,7 +281,7 @@
 	})
 
 -- Drainage channel grating
-	minetest.register_node("infrastructure:drainage_channel_grating", {
+	core.register_node("infrastructure:drainage_channel_grating", {
 		description = "Truss",
 		tiles = {
 			"infrastructure_drainage_channel_grating.png",
@@ -308,7 +308,7 @@
 	})
 
 -- Louver
-	minetest.register_node("infrastructure:louver_opened", {
+	core.register_node("infrastructure:louver_opened", {
 		description = "Louver",
 		tiles = {"infrastructure_galvanized_steel.png"},
 		drawtype = "nodebox",
@@ -332,11 +332,11 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:louver_closed", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:louver_closed", param2 = node.param2})
 		end
 	})
 
-	minetest.register_node("infrastructure:louver_closed", {
+	core.register_node("infrastructure:louver_closed", {
 		tiles = {"infrastructure_galvanized_steel.png"},
 		drawtype = "nodebox",
 		paramtype = "light",
@@ -360,14 +360,14 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:louver_opened", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:louver_opened", param2 = node.param2})
 		end
 	})
 
-	minetest.register_alias("infrastructure:louver", "infrastructure:louver_opened")
+	core.register_alias("infrastructure:louver", "infrastructure:louver_opened")
 
 -- Riffled sheet
-	minetest.register_node("infrastructure:riffled_sheet", {
+	core.register_node("infrastructure:riffled_sheet", {
 		description = "Riffled sheet",
 		tiles = {"infrastructure_riffled_sheet.png"},
 		inventory_image = "infrastructure_riffled_sheet.png",
@@ -387,7 +387,7 @@
 	})
 
 -- Corrugated sheet
-	minetest.register_node("infrastructure:corrugated_sheet", {
+	core.register_node("infrastructure:corrugated_sheet", {
 		description = "corrugated sheet",
 		tiles = {"infrastructure_corrugated_sheet.png"},
 		inventory_image = "infrastructure_corrugated_sheet.png",
@@ -402,10 +402,10 @@
 
 -- Displacement
 	function displacement(pos, placer)
-		local displaced_node = minetest.get_node(pos)
-		local fdir = minetest.dir_to_facedir(placer:get_look_dir())
+		local displaced_node = core.get_node(pos)
+		local fdir = core.dir_to_facedir(placer:get_look_dir())
 		pos.y = pos.y - 1
-		local node = minetest.get_node(pos)
+		local node = core.get_node(pos)
 
 		if string.find(node.name, "slab_") then
 			if (string.find(node.name, "_1")
@@ -417,21 +417,21 @@
 			  or string.find(node.name, "_three_sides")
 			  or string.find(node.name, "_displacement_3") then
 				pos.y = pos.y + 1
-				minetest.set_node(pos, {name = displaced_node.name.."_displacement_3", param2 = fdir})
+				core.set_node(pos, {name = displaced_node.name.."_displacement_3", param2 = fdir})
 			elseif string.find(node.name, "_three_quarter") or string.find(node.name, "_displacement_1") then
 				pos.y = pos.y + 1
-				minetest.set_node(pos, {name = displaced_node.name.."_displacement_1", param2 = fdir})
+				core.set_node(pos, {name = displaced_node.name.."_displacement_1", param2 = fdir})
 			elseif not (string.find(node.name, "_14")
 			  or string.find(node.name, "_15"))
 			  or string.find(node.name, "_displacement_2") then
 				pos.y = pos.y + 1
-				minetest.set_node(pos, {name = displaced_node.name.."_displacement_2", param2 = fdir})
+				core.set_node(pos, {name = displaced_node.name.."_displacement_2", param2 = fdir})
 			end
 		end
 	end
 
 -- Raised pavement marker yellow/yellow
-	minetest.register_node("infrastructure:marker_yellow_yellow", {
+	core.register_node("infrastructure:marker_yellow_yellow", {
 		description = "Raised pavement marker with yellow & yellow retroreflectors",
 		tiles = {
 			"infrastructure_marker_top_yellow_yellow.png",
@@ -474,7 +474,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:marker_yellow_yellow_displacement_"..tostring(i), {
+		core.register_node("infrastructure:marker_yellow_yellow_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_marker_top_yellow_yellow.png",
 				"infrastructure_marker_bottom_side.png",
@@ -514,7 +514,7 @@
 	end
 
 -- Raised pavement marker red/yellow
-	minetest.register_node("infrastructure:marker_red_yellow", {
+	core.register_node("infrastructure:marker_red_yellow", {
 		description = "Raised pavement marker with red & yellow retroreflectors",
 		tiles = {
 			"infrastructure_marker_top_red_yellow.png",
@@ -557,7 +557,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:marker_red_yellow_displacement_"..tostring(i), {
+		core.register_node("infrastructure:marker_red_yellow_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_marker_top_red_yellow.png",
 				"infrastructure_marker_bottom_side.png",
@@ -597,7 +597,7 @@
 	end
 
 -- Retroreflective delineators
-	minetest.register_node("infrastructure:delineator", {
+	core.register_node("infrastructure:delineator", {
 		description = "Retroreflective delineator",
 		tiles = {
 			"infrastructure_concrete.png",
@@ -636,7 +636,7 @@
 		end
 	})
 
-	minetest.register_node("infrastructure:delineator_guardrail", {
+	core.register_node("infrastructure:delineator_guardrail", {
 		description = "Retroreflective delineator for guardrail",
 		tiles = {
 			"infrastructure_concrete.png",
@@ -674,7 +674,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:delineator_displacement_"..tostring(i), {
+		core.register_node("infrastructure:delineator_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_concrete.png",
 				"infrastructure_concrete.png",
@@ -709,7 +709,7 @@
 			}
 		})
 
-		minetest.register_node("infrastructure:delineator_guardrail_displacement_"..tostring(i), {
+		core.register_node("infrastructure:delineator_guardrail_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_concrete.png",
 				"infrastructure_concrete.png",
@@ -744,7 +744,7 @@
 	end
 
 -- Wire rope safety barrier
-	minetest.register_node("infrastructure:wire_rope_safety_barrier", {
+	core.register_node("infrastructure:wire_rope_safety_barrier", {
 		description = "Wire rope safety barrier",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -793,7 +793,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:wire_rope_safety_barrier_displacement_"..tostring(i), {
+		core.register_node("infrastructure:wire_rope_safety_barrier_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -839,7 +839,7 @@
 	end
 
 -- Cable barrier terminal
-	minetest.register_node("infrastructure:cable_barrier_terminal", {
+	core.register_node("infrastructure:cable_barrier_terminal", {
 		description = "Cable barrier terminal",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -896,7 +896,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:cable_barrier_terminal_displacement_"..tostring(i), {
+		core.register_node("infrastructure:cable_barrier_terminal_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -950,7 +950,7 @@
 	end
 
 -- Corrugated guide rail
-	minetest.register_node("infrastructure:corrugated_guide_rail", {
+	core.register_node("infrastructure:corrugated_guide_rail", {
 		description = "Corrugated guide rail",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -999,7 +999,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:corrugated_guide_rail_displacement_"..tostring(i), {
+		core.register_node("infrastructure:corrugated_guide_rail_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -1045,7 +1045,7 @@
 	end
 
 -- Energy absorbing terminal
-	minetest.register_node("infrastructure:energy_absorbing_terminal", {
+	core.register_node("infrastructure:energy_absorbing_terminal", {
 		description = "Energy absorbing terminal",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -1081,7 +1081,7 @@
 		end
 	})
 
-	minetest.register_node("infrastructure:energy_absorbing_terminal_inversed", {
+	core.register_node("infrastructure:energy_absorbing_terminal_inversed", {
 		description = "Energy absorbing terminal inversed",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -1118,7 +1118,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:energy_absorbing_terminal_displacement_"..tostring(i), {
+		core.register_node("infrastructure:energy_absorbing_terminal_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -1150,7 +1150,7 @@
 			}
 		})
 
-		minetest.register_node("infrastructure:energy_absorbing_terminal_inversed_displacement_"..tostring(i), {
+		core.register_node("infrastructure:energy_absorbing_terminal_inversed_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -1184,7 +1184,7 @@
 	end
 
 -- Fitch barrel
-	minetest.register_node("infrastructure:fitch_barrel", {
+	core.register_node("infrastructure:fitch_barrel", {
 		description = "Fitch barrel",
 		tiles = {
 			"infrastructure_fitch_barrel_top.png",
@@ -1214,7 +1214,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:fitch_barrel_displacement_"..tostring(i), {
+		core.register_node("infrastructure:fitch_barrel_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_fitch_barrel_top.png",
 				"infrastructure_fitch_barrel_bottom.png",
@@ -1241,7 +1241,7 @@
 	end
 
 -- Crowd control barricade
-	minetest.register_node("infrastructure:crowd_control_barricade", {
+	core.register_node("infrastructure:crowd_control_barricade", {
 		description = "Crowd control barricade",
 		tiles = {
 			"infrastructure_galvanized_steel.png",
@@ -1289,7 +1289,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:crowd_control_barricade_"..tostring(i), {
+		core.register_node("infrastructure:crowd_control_barricade_"..tostring(i), {
 			tiles = {
 				"infrastructure_galvanized_steel.png",
 				"infrastructure_galvanized_steel.png",
@@ -1333,7 +1333,7 @@
 	end
 
 -- Anti-dazzling panel
-	minetest.register_node("infrastructure:anti_dazzling_panel", {
+	core.register_node("infrastructure:anti_dazzling_panel", {
 		description = "Anti-dazzling panel",
 		tiles = {
 			"infrastructure_anti_dazzling_panel_top_bottom.png",
@@ -1371,7 +1371,7 @@
 	})
 
 	for i = 1, 3 do
-		minetest.register_node("infrastructure:anti_dazzling_panel_displacement_"..tostring(i), {
+		core.register_node("infrastructure:anti_dazzling_panel_displacement_"..tostring(i), {
 			tiles = {
 				"infrastructure_anti_dazzling_panel_top_bottom.png",
 				"infrastructure_anti_dazzling_panel_top_bottom.png",
@@ -1412,7 +1412,7 @@
 		fixed = { -0.25, -0.5, -0.25, 0.25, 0.4065, 0.25 }
 	}
 
-	minetest.register_node("infrastructure:traffic_cone", {
+	core.register_node("infrastructure:traffic_cone", {
 		description = "Traffic cone",
 		tiles = { "infrastructure_traffic_cone.png" },
 		drawtype = "mesh",
@@ -1436,7 +1436,7 @@
 			fixed = { -0.25, -0.5 - i/4, -0.25, 0.25, 0.4065 - i/4, 0.25 }
 		}
 
-		minetest.register_node("infrastructure:traffic_cone_displacement_"..tostring(i), {
+		core.register_node("infrastructure:traffic_cone_displacement_"..tostring(i), {
 			tiles = { "infrastructure_traffic_cone.png" },
 			drawtype = "mesh",
 			mesh = "infrastructure_traffic_cone_i"..i..".obj",
@@ -1452,7 +1452,7 @@
 	end
 
 -- Noise barrier
-	minetest.register_node("infrastructure:noise_barrier", {
+	core.register_node("infrastructure:noise_barrier", {
 		description = "Noise barrier",
 		tiles = {
 			"infrastructure_galvanized_steel.png",

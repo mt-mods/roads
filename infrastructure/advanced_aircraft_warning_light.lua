@@ -1,5 +1,5 @@
 -- Aircraft warning light
-minetest.register_node("infrastructure:aircraft_warning_light", {
+core.register_node("infrastructure:aircraft_warning_light", {
 	description = "Aircraft warning light",
 	tiles = {
 		{name="infrastructure_aircraft_warning_light_top_anim.png",animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=4}},
@@ -53,5 +53,5 @@ minetest.register_node("infrastructure:aircraft_warning_light", {
 	}
 })
 
-minetest.register_alias("infrastructure:aircraft_warning_light_bright", "infrastructure:aircraft_warning_light")
-minetest.register_alias("infrastructure:aircraft_warning_light_dark", "infrastructure:aircraft_warning_light")
+core.register_alias("infrastructure:aircraft_warning_light_bright", "infrastructure:aircraft_warning_light")
+core.register_alias("infrastructure:aircraft_warning_light_dark", "infrastructure:aircraft_warning_light")

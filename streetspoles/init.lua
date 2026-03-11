@@ -3,7 +3,7 @@
 ]]
 
 -- Simple pole
-minetest.register_node(":streets:pole_bottom",{
+core.register_node(":streets:pole_bottom",{
 	description = streets.S("Pole"),
 	tiles = {"streets_pole.png"},
 	groups = {cracky=2},
@@ -28,23 +28,23 @@ minetest.register_node(":streets:pole_bottom",{
 	},
 	after_place_node = function(pos,placer,itemstack)
 		pos.y = pos.y +1
-		if minetest.get_node(pos).name == "air" then
-			minetest.add_node(pos,{name = "streets:pole_top", param2 = minetest.dir_to_facedir(placer:get_look_dir())})
+		if core.get_node(pos).name == "air" then
+			core.add_node(pos,{name = "streets:pole_top", param2 = core.dir_to_facedir(placer:get_look_dir())})
 		else
-			minetest.chat_send_player(placer:get_player_name(),"Not enough free space! A pole has a height of 2 blocks!")
+			core.chat_send_player(placer:get_player_name(),"Not enough free space! A pole has a height of 2 blocks!")
 			pos.y = pos.y -1
-			minetest.remove_node(pos)
+			core.remove_node(pos)
 		end
 	end,
 	after_dig_node = function(pos, oldnode, oldmetadata, digger)
 		pos.y = pos.y +1
-		if minetest.get_node(pos).name == "streets:pole_top" then
-			minetest.remove_node(pos)
+		if core.get_node(pos).name == "streets:pole_top" then
+			core.remove_node(pos)
 		end
 	end
 })
 
-minetest.register_node(":streets:pole_top",{
+core.register_node(":streets:pole_top",{
 	description = streets.S("Y u no play minetest without cheating?"),
 	tiles = {"streets_pole.png"},
 	groups = {not_in_creative_inventory=1,cracky=2},
@@ -61,7 +61,7 @@ minetest.register_node(":streets:pole_top",{
 	}
 })
 
-minetest.register_craft({
+core.register_craft({
 	output = "streets:pole_bottom 3",
 	recipe = {
 		{"","default:steel_ingot",""},
@@ -72,7 +72,7 @@ minetest.register_craft({
 
 -- Big pole
 
-minetest.register_node(":streets:bigpole", {
+core.register_node(":streets:bigpole", {
 	description = "Pole",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -87,7 +87,7 @@ minetest.register_node(":streets:bigpole", {
 			{-0.15, -0.5, -0.15, 0.15, 0.5, 0.15}
 		}
 	},
-	on_place = minetest.rotate_node,
+	on_place = core.rotate_node,
 	digiline = {
 		wire = {
 			rules = {
@@ -102,7 +102,7 @@ minetest.register_node(":streets:bigpole", {
 		}
 	}
 })
-minetest.register_node(":streets:bigpole_edge", {
+core.register_node(":streets:bigpole_edge", {
 	description = "Pole",
 	drop = "streets:bigpole",
 	paramtype = "light",
@@ -132,7 +132,7 @@ minetest.register_node(":streets:bigpole_edge", {
 		}
 	}
 })
-minetest.register_node(":streets:bigpole_tjunction", {
+core.register_node(":streets:bigpole_tjunction", {
 	description = "Pole",
 	drop = "streets:bigpole",
 	paramtype = "light",
@@ -162,7 +162,7 @@ minetest.register_node(":streets:bigpole_tjunction", {
 		}
 	}
 })
-minetest.register_craft({
+core.register_craft({
 	output = "streets:bigpole 3",
 	recipe = {
 		{"","",""},
@@ -170,7 +170,7 @@ minetest.register_craft({
 		{"","default:steel_ingot",""}
 	}
 })
-minetest.register_craft({
+core.register_craft({
 	output = "streets:bigpole_edge 3",
 	recipe = {
 		{"","",""},
@@ -178,7 +178,7 @@ minetest.register_craft({
 		{"streets:bigpole","",""}
 	}
 })
-minetest.register_craft({
+core.register_craft({
 	output = "streets:bigpole_edge 3",
 	recipe = {
 		{"","",""},
@@ -186,7 +186,7 @@ minetest.register_craft({
 		{"","streets:bigpole",""}
 	}
 })
-minetest.register_craft({
+core.register_craft({
 	output = "streets:bigpole_tjunction 2",
 	recipe = {
 		{"","",""},

@@ -1,9 +1,9 @@
 --[[
 	StreetsMod: Concrete, Concrete wall (flat), Concrete wall (full)
 ]]
-	minetest.register_alias("streets:concrete","basic_materials:concrete_block")
+	core.register_alias("streets:concrete","basic_materials:concrete_block")
 	-- Use technic's concrete block for the seperating wall
-	minetest.register_node(":streets:concrete_wall",{
+	core.register_node(":streets:concrete_wall",{
 		description = streets.S("Concrete wall"),
 		tiles = {"basic_materials_concrete_block.png"},
 		groups = {cracky=2},
@@ -19,7 +19,7 @@
 			}
 		}
 	})
-	minetest.register_craft({
+	core.register_craft({
 		output = "streets:concrete_wall 3",
 		recipe = {
 			{"","basic_materials:concrete_block",""},
@@ -27,7 +27,7 @@
 			{"basic_materials:concrete_block","basic_materials:concrete_block","basic_materials:concrete_block"}
 		}
 	})
-	minetest.register_node(":streets:concrete_wall_flat",{
+	core.register_node(":streets:concrete_wall_flat",{
 		description = streets.S("Concrete wall"),
 		tiles = {"basic_materials_concrete_block.png"},
 		groups = {cracky=2},
@@ -42,7 +42,7 @@
 			}
 		}
 	})
-	minetest.register_craft({
+	core.register_craft({
 		output = "streets:concrete_wall_flat 3",
 		recipe = {
 			{"","basic_materials:concrete_block",""},

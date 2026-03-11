@@ -1,5 +1,5 @@
 -- Curve chevron
-	minetest.register_node("infrastructure:curve_chevron_dark", {
+	core.register_node("infrastructure:curve_chevron_dark", {
 		description = "Flashing curve chevron",
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
@@ -31,17 +31,17 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:curve_chevron_bright", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:curve_chevron_bright", param2 = node.param2})
 		end,
 
 		mesecons = {effector = {
 			action_on = function (pos, node)
-				minetest.swap_node(pos, {name = "infrastructure:curve_chevron_bright", param2 = node.param2})
+				core.swap_node(pos, {name = "infrastructure:curve_chevron_bright", param2 = node.param2})
 			end,
 		}}
 	})
 
-	minetest.register_node("infrastructure:curve_chevron_bright", {
+	core.register_node("infrastructure:curve_chevron_bright", {
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
 			"infrastructure_traffic_lights_side.png",
@@ -74,14 +74,14 @@
 		},
 
 		on_punch = function(pos, node)
-			minetest.swap_node(pos, {name = "infrastructure:curve_chevron_dark", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:curve_chevron_dark", param2 = node.param2})
 		end,
 
 		mesecons = {effector = {
 			action_off = function (pos, node)
-				minetest.swap_node(pos, {name = "infrastructure:curve_chevron_dark", param2 = node.param2})
+				core.swap_node(pos, {name = "infrastructure:curve_chevron_dark", param2 = node.param2})
 			end
 		}}
 	})
 
-	minetest.register_alias("infrastructure:curve_chevron", "infrastructure:curve_chevron_dark")
+	core.register_alias("infrastructure:curve_chevron", "infrastructure:curve_chevron_dark")

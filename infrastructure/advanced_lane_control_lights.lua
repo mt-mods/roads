@@ -1,7 +1,7 @@
 -- Lane control lights
 
 for i = 1, 6 do
-	minetest.register_node("infrastructure:lane_control_lights_"..tostring(i), {
+	core.register_node("infrastructure:lane_control_lights_"..tostring(i), {
 		description = "Lane control lights",
 		tiles = {
 			"infrastructure_traffic_lights_side.png",
@@ -15,7 +15,7 @@ for i = 1, 6 do
 		paramtype = "light",
 		paramtype2 = "facedir",
 		on_construct = function(pos)
-			local meta = minetest.get_meta(pos)
+			local meta = core.get_meta(pos)
 			meta:set_string("formspec", "field[channel;Channel;${channel}]")
 		end,
 		_digistuff_channelcopier_fieldname = "channel",
@@ -50,14 +50,14 @@ for i = 1, 6 do
 		},
 		on_receive_fields = function(pos, formname, fields)
 			if (fields.channel) then
-				minetest.get_meta(pos):set_string("channel", fields.channel)
+				core.get_meta(pos):set_string("channel", fields.channel)
 			end
 		end,
 		digiline = {
 			receptor = {},
 			effector = {
 				action = function(pos, node, channel, msg)
-					local setchan = minetest.get_meta(pos):get_string("channel")
+					local setchan = core.get_meta(pos):get_string("channel")
 					if setchan ~= channel or type(msg) ~= "string" then
 						return
 					end
@@ -75,12 +75,12 @@ for i = 1, 6 do
 					elseif (msg=="yellow") then
 						node.name = "infrastructure:lane_control_lights_6"
 					end
-					minetest.set_node(pos,node)
-					minetest.get_meta(pos):set_string("channel",setchan)
+					core.set_node(pos,node)
+					core.get_meta(pos):set_string("channel",setchan)
 				end
 			}
 		}
 	})
 end
 
-minetest.register_alias("infrastructure:lane_control_lights", "infrastructure:lane_control_lights_1")
+core.register_alias("infrastructure:lane_control_lights", "infrastructure:lane_control_lights_1")

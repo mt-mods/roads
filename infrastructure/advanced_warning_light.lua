@@ -1,6 +1,6 @@
 -- Warning light
 
-minetest.register_node("infrastructure:warning_light", {
+core.register_node("infrastructure:warning_light", {
 	description = "Warning light",
 	tiles = {
 		"infrastructure_warning_light_top.png",
@@ -45,5 +45,5 @@ minetest.register_node("infrastructure:warning_light", {
 
 
 
-minetest.register_alias("infrastructure:warning_light_bright", "infrastructure:warning_light")
-minetest.register_alias("infrastructure:warning_light_dark", "infrastructure:warning_light")
+core.register_alias("infrastructure:warning_light_bright", "infrastructure:warning_light")
+core.register_alias("infrastructure:warning_light_dark", "infrastructure:warning_light")

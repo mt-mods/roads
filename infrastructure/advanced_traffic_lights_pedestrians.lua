@@ -2,56 +2,56 @@
 	beep_handler = {}
 
 	function semaphores_pedestrians(pos, node)
-		local p = minetest.hash_node_position(pos)
+		local p = core.hash_node_position(pos)
 		if node.name == "infrastructure:traffic_lights_pedestrians_bottom_1" then
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_2", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_2", param2 = node.param2})
 			pos.y = pos.y + 1
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_2", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_2", param2 = node.param2})
 		elseif node.name == "infrastructure:traffic_lights_pedestrians_bottom_2" then
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_3", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_3", param2 = node.param2})
 			pos.y = pos.y + 1
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_3", param2 = node.param2})
-			beep_handler[p] = minetest.sound_play("infrastructure_traffic_lights_1", {
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_3", param2 = node.param2})
+			beep_handler[p] = core.sound_play("infrastructure_traffic_lights_1", {
 				loop = true,
 				pos = pos,
 				gain = TRAFFIC_LIGHTS_VOLUME,
 				max_hear_distance = 50
 			})
 		elseif node.name == "infrastructure:traffic_lights_pedestrians_bottom_3" then
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_4", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_4", param2 = node.param2})
 			if beep_handler[p] ~= nil then
-				minetest.sound_stop(beep_handler[p])
+				core.sound_stop(beep_handler[p])
 				beep_handler[p] = nil
 			end
 			pos.y = pos.y + 1
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_4", param2 = node.param2})
-			beep_handler[p] = minetest.sound_play("infrastructure_traffic_lights_2", {
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_4", param2 = node.param2})
+			beep_handler[p] = core.sound_play("infrastructure_traffic_lights_2", {
 				loop = true,
 				pos = pos,
 				gain = TRAFFIC_LIGHTS_VOLUME,
 				max_hear_distance = 50
 			})
 		elseif node.name == "infrastructure:traffic_lights_pedestrians_bottom_4" then
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_1", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_bottom_1", param2 = node.param2})
 			pos.y = pos.y + 1
-			minetest.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_1", param2 = node.param2})
+			core.swap_node(pos, {name = "infrastructure:traffic_lights_pedestrians_top_1", param2 = node.param2})
 			if beep_handler[p] ~= nil then
-				minetest.sound_stop(beep_handler[p])
+				core.sound_stop(beep_handler[p])
 				beep_handler[p] = nil
 			end
 		end
 	end
 
 	function quiet(pos)
-		local p = minetest.hash_node_position(pos)
+		local p = core.hash_node_position(pos)
 		if beep_handler[p] ~= nil then
-			minetest.sound_stop(beep_handler[p])
+			core.sound_stop(beep_handler[p])
 			beep_handler[p] = nil
 		end
 	end
 
 	for i = 1, 4 do
-		minetest.register_node("infrastructure:traffic_lights_pedestrians_top_"..tostring(i), {
+		core.register_node("infrastructure:traffic_lights_pedestrians_top_"..tostring(i), {
 			tiles = {
 				"infrastructure_traffic_lights_side.png",
 				"infrastructure_traffic_lights_side.png",
@@ -88,7 +88,7 @@
 			}
 		})
 
-		minetest.register_node("infrastructure:traffic_lights_pedestrians_bottom_"..tostring(i), {
+		core.register_node("infrastructure:traffic_lights_pedestrians_bottom_"..tostring(i), {
 			tiles = {
 				"infrastructure_traffic_lights_side.png",
 				"infrastructure_traffic_lights_side.png",
@@ -145,18 +145,18 @@
 			},
 
 			after_place_node = function(pos)
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 				pos.y = pos.y + 1
 				node.name = "infrastructure:traffic_lights_pedestrians_top_"..tostring(i)
-				minetest.add_node(pos, node)
+				core.add_node(pos, node)
 			end,
 
 			after_dig_node = function(pos)
-				local node = minetest.get_node(pos)
+				local node = core.get_node(pos)
 				quiet(pos)
 				pos.y = pos.y + 1
 				node.name = "infrastructure:traffic_lights_pedestrians_top_"..tostring(i)
-				minetest.remove_node(pos)
+				core.remove_node(pos)
 			end,
 
 			on_punch = function(pos, node)
@@ -171,7 +171,7 @@
 		})
 	end
 
-	minetest.register_node("infrastructure:traffic_lights_pedestrians_bottom_1", {
+	core.register_node("infrastructure:traffic_lights_pedestrians_bottom_1", {
 		description = "Traffic lights for pedestrians",
 		inventory_image = "infrastructure_traffic_lights_pedestrians.png",
 		wield_image = "infrastructure_traffic_lights_pedestrians.png",
@@ -230,18 +230,18 @@
 		},
 
 		after_place_node = function(pos)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:traffic_lights_pedestrians_top_1"
-			minetest.add_node(pos, node)
+			core.add_node(pos, node)
 		end,
 
 		after_dig_node = function(pos)
-			local node = minetest.get_node(pos)
+			local node = core.get_node(pos)
 			quiet(pos)
 			pos.y = pos.y + 1
 			node.name = "infrastructure:traffic_lights_pedestrians_top_1"
-			minetest.remove_node(pos)
+			core.remove_node(pos)
 		end,
 
 		on_punch = function(pos, node)
@@ -255,4 +255,4 @@
 		}}
 	})
 
-	minetest.register_alias("infrastructure:traffic_lights_pedestrians", "infrastructure:traffic_lights_pedestrians_bottom_1")
+	core.register_alias("infrastructure:traffic_lights_pedestrians", "infrastructure:traffic_lights_pedestrians_bottom_1")
