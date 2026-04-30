@@ -41,7 +41,8 @@ core.register_node(":streets:pole_bottom",{
 		if core.get_node(pos).name == "streets:pole_top" then
 			core.remove_node(pos)
 		end
-	end
+	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:pole_top",{
@@ -58,7 +59,8 @@ core.register_node(":streets:pole_top",{
 		fixed = {
 			{-0.1,-0.5,-0.5,0.1,0.5,-0.4}
 		}
-	}
+	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_craft({
@@ -100,7 +102,8 @@ core.register_node(":streets:bigpole", {
 				{x= 0, y=-2, z= 0}
 			}
 		}
-	}
+	},
+	sounds = default.node_sound_metal_defaults(),
 })
 core.register_node(":streets:bigpole_edge", {
 	description = "Pole",
@@ -130,7 +133,8 @@ core.register_node(":streets:bigpole_edge", {
 				{x= 0, y= 1, z= 0},
 			}
 		}
-	}
+	},
+	sounds = default.node_sound_metal_defaults(),
 })
 core.register_node(":streets:bigpole_tjunction", {
 	description = "Pole",
@@ -160,7 +164,8 @@ core.register_node(":streets:bigpole_tjunction", {
 				{x= 0, y= 1, z= 0},
 			}
 		}
-	}
+	},
+	sounds = default.node_sound_metal_defaults(),
 })
 core.register_craft({
 	output = "streets:bigpole 3",

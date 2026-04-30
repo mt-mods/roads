@@ -376,7 +376,8 @@ core.register_node(":streets:digiline_distributor",{
 				{x= 0, y= 2, z=0}
 			}
 		}
-	}
+	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_hybrid_off",{
@@ -414,6 +415,7 @@ core.register_node(":streets:beacon_hybrid_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_hybrid_yellow",{
@@ -450,6 +452,7 @@ core.register_node(":streets:beacon_hybrid_yellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_hybrid_red",{
@@ -486,6 +489,7 @@ core.register_node(":streets:beacon_hybrid_red",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_hybrid_flashyellow",{
@@ -525,6 +529,7 @@ core.register_node(":streets:beacon_hybrid_flashyellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_hybrid_flashred",{
@@ -564,6 +569,7 @@ core.register_node(":streets:beacon_hybrid_flashred",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_off",{
@@ -601,6 +607,7 @@ core.register_node(":streets:beacon_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_red",{
@@ -637,6 +644,7 @@ core.register_node(":streets:beacon_red",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_yellow",{
@@ -673,6 +681,7 @@ core.register_node(":streets:beacon_yellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_flashred",{
@@ -712,6 +721,7 @@ core.register_node(":streets:beacon_flashred",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:beacon_flashyellow",{
@@ -751,6 +761,7 @@ core.register_node(":streets:beacon_flashyellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_off",{
@@ -788,6 +799,7 @@ core.register_node(":streets:trafficlight_top_extender_left_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_yellow",{
@@ -825,6 +837,7 @@ core.register_node(":streets:trafficlight_top_extender_left_yellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
@@ -865,6 +878,7 @@ core.register_node(":streets:trafficlight_top_extender_left_flashyellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt",{
@@ -905,6 +919,7 @@ core.register_node(":streets:trafficlight_top_extender_left_flashyellow_alt",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
@@ -945,6 +960,7 @@ core.register_node(":streets:trafficlight_top_extender_left_flashgreen",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_left_green",{
@@ -982,6 +998,7 @@ core.register_node(":streets:trafficlight_top_extender_left_green",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_off",{
@@ -1019,6 +1036,7 @@ core.register_node(":streets:trafficlight_top_extender_right_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_yellow",{
@@ -1056,6 +1074,7 @@ core.register_node(":streets:trafficlight_top_extender_right_yellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
@@ -1096,6 +1115,7 @@ core.register_node(":streets:trafficlight_top_extender_right_flashyellow",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt",{
@@ -1136,6 +1156,7 @@ core.register_node(":streets:trafficlight_top_extender_right_flashyellow_alt",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
@@ -1176,6 +1197,7 @@ core.register_node(":streets:trafficlight_top_extender_right_flashgreen",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_top_extender_right_green",{
@@ -1213,6 +1235,7 @@ core.register_node(":streets:trafficlight_top_extender_right_green",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 
@@ -1252,6 +1275,7 @@ core.register_node(":streets:pedlight_top_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:pedlight_top_dontwalk",{
@@ -1278,6 +1302,7 @@ core.register_node(":streets:pedlight_top_dontwalk",{
 			end
 		}
 	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:pedlight_top_walk",{
@@ -1304,6 +1329,7 @@ core.register_node(":streets:pedlight_top_walk",{
 			end
 		}
 	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:pedlight_top_flashingdontwalk",{
@@ -1333,6 +1359,7 @@ core.register_node(":streets:pedlight_top_flashingdontwalk",{
 			end
 		}
 	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:pedlight_top_flashingwalk",{
@@ -1362,6 +1389,7 @@ core.register_node(":streets:pedlight_top_flashingwalk",{
 			end
 		}
 	},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_entity(":streets:pedcountdown",{
@@ -1448,6 +1476,7 @@ for _,i in pairs({"","_left","_right"}) do
 				core.get_meta(pos):set_string("state", "Off")
 			end
 		end,
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_red",{
@@ -1474,6 +1503,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_yellow",{
@@ -1500,6 +1530,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_redyellow",{
@@ -1526,6 +1557,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_green",{
@@ -1552,6 +1584,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_warn",{
@@ -1581,6 +1614,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_flashred",{
@@ -1610,6 +1644,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_warn_alt",{
@@ -1639,6 +1674,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_flashred_alt",{
@@ -1668,6 +1704,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 
 	core.register_node(":streets:trafficlight_top"..i.."_flashgreen",{
@@ -1697,6 +1734,7 @@ for _,i in pairs({"","_left","_right"}) do
 				end
 			}
 		},
+		sounds = default.node_sound_metal_defaults(),
 	})
 end
 
@@ -1735,6 +1773,7 @@ core.register_node(":streets:trafficlight_rrfb_off",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:trafficlight_rrfb_on",{
@@ -1774,6 +1813,7 @@ core.register_node(":streets:trafficlight_rrfb_on",{
 			core.get_meta(pos):set_string("state", "Off")
 		end
 	end,
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_node(":streets:green_arrow",{
@@ -1790,7 +1830,8 @@ core.register_node(":streets:green_arrow",{
 		type = "fixed",
 		fixed = streets.bBox
 	},
-	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_straight_green.png"}
+	tiles = {"streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_bg.png","streets_tl_straight_green.png"},
+	sounds = default.node_sound_metal_defaults(),
 })
 
 core.register_craft({

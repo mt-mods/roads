@@ -17,7 +17,8 @@
 				{-0.4, -0.5, -0.5, 0.4, -0.4, 0.5},
 				{-0.1, -0.4, -0.5, 0.1, 0.5, 0.5}
 			}
-		}
+		},
+		sounds = default.node_sound_stone_defaults(),
 	})
 	core.register_craft({
 		output = "streets:concrete_wall 3",
@@ -40,7 +41,8 @@
 			fixed = {
 				{-0.1, -0.5, -0.5, 0.1, 0.5, 0.5}
 			}
-		}
+		},
+		sounds = default.node_sound_stone_defaults(),
 	})
 	core.register_craft({
 		output = "streets:concrete_wall_flat 3",

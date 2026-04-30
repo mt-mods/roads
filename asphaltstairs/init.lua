@@ -19,7 +19,8 @@ if not core.get_modpath("moreblocks") then return end
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5},
 					{-0.5, 0.0, 0.0, 0.5, 0.5, 0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_solid_line_stair 6",
@@ -51,7 +52,8 @@ if not core.get_modpath("moreblocks") then return end
 				fixed = {
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_solid_line_slab 3",
@@ -78,7 +80,8 @@ if not core.get_modpath("moreblocks") then return end
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5},
 					{-0.5, 0.0, 0.0, 0.5, 0.5, 0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_dashed_line_stair 6",
@@ -110,7 +113,8 @@ if not core.get_modpath("moreblocks") then return end
 				fixed = {
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_dashed_line_slab 3",
@@ -135,7 +139,8 @@ if not core.get_modpath("moreblocks") then return end
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5},
 					{-0.5, 0.0, 0.0, 0.5, 0.5, 0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_node(":streets:asphalt_side_stair_r",{
 			description = streets.S(streets.S("Asphalt stair")),
@@ -152,7 +157,8 @@ if not core.get_modpath("moreblocks") then return end
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5},
 					{-0.5, 0.0, 0.0, 0.5, 0.5, 0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_side_stair_l 6",
@@ -194,7 +200,8 @@ if not core.get_modpath("moreblocks") then return end
 				fixed = {
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_node(":streets:asphalt_side_slab_r",{
 			description = streets.S(streets.S("Asphalt slab")),
@@ -209,7 +216,8 @@ if not core.get_modpath("moreblocks") then return end
 				fixed = {
 					{-0.5,-0.5,-0.5,0.5,0.0,0.5}
 				}
-			}
+			},
+			sounds = default.node_sound_stone_defaults(),
 		})
 		core.register_craft({
 			output = "streets:asphalt_side_slab_l 3",
@@ -241,7 +249,8 @@ if not core.get_modpath("moreblocks") then return end
 		{
 			groups = {not_in_creative_inventory=1, cracky=3},
 			tiles = {"streets_asphalt.png"},
-			description = "Asphalt"
+			description = "Asphalt",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 
@@ -259,7 +268,8 @@ if not core.get_modpath("moreblocks") then return end
 				"streets_asphalt.png",
 				"streets_asphalt.png^streets_asphalt_solid_line.png"
 			},
-			description = "Asphalt with solid centerline"
+			description = "Asphalt with solid centerline",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 
@@ -277,7 +287,8 @@ if not core.get_modpath("moreblocks") then return end
 				"streets_asphalt.png",
 				"streets_asphalt.png^streets_asphalt_dashed_line.png"
 			},
-			description = "Asphalt with dashed centerline"
+			description = "Asphalt with dashed centerline",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 
@@ -295,7 +306,8 @@ if not core.get_modpath("moreblocks") then return end
 				"streets_asphalt.png",
 				"streets_asphalt.png^streets_asphalt_side.png"
 			},
-			description = "Asphalt with solid outer line (left)"
+			description = "Asphalt with solid outer line (left)",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 

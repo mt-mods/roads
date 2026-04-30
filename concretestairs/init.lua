@@ -9,7 +9,8 @@ if core.get_modpath("moreblocks") then
 		{
 			groups = {not_in_creative_inventory=1, cracky=2},
 			tiles = {"basic_materials_concrete_block.png"},
-			description = "Concrete"
+			description = "Concrete",
+			sounds = default.node_sound_stone_defaults(),
 		}
 	)
 	core.register_alias("stairs:stair_concrete","streets:stair_concrete")
