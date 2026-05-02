@@ -10,6 +10,7 @@ core.register_node(":streets:steel_support",{
 	climbable = true,
 	sunlight_propagates = true,
 	paramtype = "light",
+	sounds = default.node_sound_metal_defaults(),
 })
 core.register_craft({
 	output = "streets:steel_support 5",
